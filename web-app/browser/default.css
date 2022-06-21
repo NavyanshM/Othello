@@ -1,0 +1,120 @@
+:root
+{
+    --grid-columns: 8;
+    --grid-rows: 8;
+    --grid-aspect: var(--grid-columns) / var(--grid-rows);
+
+    --footer-height: 48px;
+    --header-height: 84px;
+
+    --palette-accent0: #804;
+    --palette-accent1: #d07;
+    --palette-accent2: #f08;
+    --palette-accent3: #e48;
+    --palette-base0: #3b87b5;
+    --palette-base1: #471ca4;
+    --palette-base2: rgba(87, 235, 68, 1);
+    --palette-base3: #4d5057;
+    --palette-base4: #616569;
+    --palette-base5: #eff0f1;
+    --palette-secondary0: #345e75;
+    --palette-secondary1: #3daee9;
+
+    --grid-background: rgba(87, 235, 68, 1);
+}
+
+*
+{
+    box-sizing: border-box;
+}
+
+body
+{
+    color: var(--palette-base5);
+    font-family: "Fira Sans", sans-serif;
+    font-size: 16pt;
+    height: 100%;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+}
+
+header
+{
+    background: var(--palette-accent2);
+    font-size: 28pt;
+    font-weight: bold;
+    height: var(--header-height);
+    padding-top: 10px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+main
+{
+    background: var(--palette-base2);
+    height: calc(100% - var(--header-height) - var(--footer-height));
+    position: absolute;
+    top: var(--header-height);
+    width: calc(100% );
+}
+
+footer
+{
+    background: var(--palette-secondary0);
+    bottom: 0px;
+    height: var(--footer-height);
+    padding: 0.5em;
+    position: absolute;
+    width: 100%;
+}
+
+.grid
+{
+    aspect-ratio: var(--grid-aspect);
+    background-size: 100%;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    position: relative;
+    top: 2.5%;
+    max-height: 95%;
+    max-width: 95%;
+}
+
+.row
+{
+    height: calc(100% / var(--grid-rows));
+    position: relative;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.cell
+{
+    background-size: cover;
+    display: inline-block;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: calc(100% / var(--grid-columns));
+}
+
+.cell.empty
+{
+    background-image: url("assets/Empty_Green.png");    
+}
+
+.cell.token_1
+{
+    background-image: url("assets/White_token.png");
+}
+
+.cell.token_2
+{
+    background-image: url("assets/Black_Token.png");
+}
