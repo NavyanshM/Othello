@@ -14,6 +14,7 @@ To install them run the following commands in the terminal.
 npm install
 npm install --prefix ./web-app/common
 npm install express 
+run using node js
 ```
 These won't be uploaded to your repository because of the `.gitignore`.
 I'll run the same commands when I download your repos.
