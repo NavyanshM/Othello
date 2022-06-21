@@ -39,3 +39,22 @@ Connect4.token_strings = Object.freeze({
 Othello.empty_board = function (width = 8, height = 8) {
     return R.repeat(R.repeat(0, height), width);
 };
+
+Othello.place_token = function(player, column_index, row_index, board){
+    return  R.update(
+        column_index,
+        R.update(row_index, player, board[column_index]),
+        board
+    );
+}
+
+Othello.setup_board = function(board){
+    board = Connect4.place_token(1, 3, 4, board);
+    board = Connect4.place_token(1, 4, 3, board);
+    board = Connect4.place_token(2, 3, 3, board);
+    board = Connect4.place_token(2, 4, 4, board);
+    return board; 
+}; 
+
+
+export default Object.freeze(Connect4);
