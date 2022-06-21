@@ -5,7 +5,7 @@ FOR REVIEWER: PLEASE COULD YOU ONLY COMMENT ON THE FRONT END UI FEATURES A PLAYE
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Computing 2 Coursework Submission.
-**CID**: 02029187
+**CID**: [ENTER CID] 
 
 This is the submission template for your Computing 2 Applications coursework submission.
 
