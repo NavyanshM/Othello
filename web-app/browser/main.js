@@ -6,9 +6,8 @@ import Connect4 from "../common/Connect4.js";
 const grid_columns = 8;
 const grid_rows = 8;
 
-let board = Connect4.empty_board();
+let board = Connect4.empty_board(grid_columns, grid_rows);
 board = Connect4.setup_board(board); 
-//board = Connect4.setup_board_topright(board); 
 
 document.documentElement.style.setProperty("--grid-rows", grid_rows);
 document.documentElement.style.setProperty("--grid-columns", grid_columns);
@@ -31,11 +30,16 @@ const cells = range(grid_rows).map(function (row_index) {
             const legal_move = Connect4.free_columns(
                 board
             ).includes(column_index);
-            if (legal_move) {
+            if (Connect4.is_cell_empty(column_index, row_index, board)) {
+                //footer.textContent = `${board[column_index][grid_rows - 1 - row_index]}`
                 const player = Connect4.player_to_ply(board);
                 board = Connect4.ply(player, column_index, row_index, board);
+                //footer.textContent = `${}`;
+                //Connect4.is_cell_empty(column_index, row_index, board); 
                 update_grid();
-            }
+                //const text = board[column_index][grid_rows - 1 - row_index];
+                //footer.textContent = `${text}`;
+            }   
         };
 
         row.append(cell);
@@ -66,7 +70,7 @@ const update_grid = function () {
         });
     });
     const player = Connect4.player_to_ply(board);
-    footer.textContent = `Player ${player} to play!`;
+    //footer.textContent = `Player ${player} to play!`;
 };
 
 update_grid();

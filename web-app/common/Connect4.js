@@ -56,7 +56,11 @@ Connect4.token_strings = Object.freeze({
  * @param {number} [height = 8] The height of the new board.
  * @returns {Connect4.Board} An empty board for starting a game.
  */
-Connect4.empty_board = function (width = 8, height = 8) {
+
+const width = 8;
+const height = 8;
+
+Connect4.empty_board = function (width, height) {
     return R.repeat(R.repeat(0, height), width);
 }
 
@@ -164,7 +168,7 @@ Connect4.is_ended = function (board) {
         Connect4.is_winning_for_player(2, board) ||
         Connect4.free_columns(board).length === 0
     );
-};
+}; 
 
 const player_has_win_in_column = function (player) {
     return function (column) {
@@ -271,7 +275,7 @@ Connect4.player_to_ply = function (board) {
     return R.update(
         column_index,
         R.update((R.length(board) - 1 - row_index), token, board[column_index]),
-        board
+        board 
     );
 };
 
@@ -294,6 +298,16 @@ const replace_tokens_on_board = function (token_strings) {
     return function (board) {
         return R.map(R.map(replace_tokens_in_slot(token_strings)), board);
     };
+};
+
+Connect4.is_cell_empty = function (column_index, row_index, board){
+    if (board[column_index][width - 1 - row_index] === 0) {
+        footer.textContent = `${board[column_index][width - 1 - row_index]}`;
+        return true;
+    }
+    else{
+        return false;
+    }
 };
 
 /**
