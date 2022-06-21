@@ -27,6 +27,15 @@
  * @property {number} longest_streak The most consecutive games won.
  */
 
-const Board = {
-    
-}
+import R from "../common/ramda.js";
+
+const othello = Object.create(null);
+
+Connect4.token_strings = Object.freeze({
+    "default": ["0", "1", "2"],
+    "disks": ["","⚪","⚫"] 
+});
+
+Othello.empty_board = function (width = 8, height = 8) {
+    return R.repeat(R.repeat(0, height), width);
+};
