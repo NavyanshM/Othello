@@ -275,7 +275,7 @@ Connect4.player_to_ply = function (board) {
     return R.update(
         column_index,
         R.update((R.length(board) - 1 - row_index), token, board[column_index]),
-        board 
+        board
     );
 };
 
