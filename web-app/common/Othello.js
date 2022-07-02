@@ -52,6 +52,8 @@ Othello.place_token = function (player, column_index, row_index, board) {
 
 
 //https://www.youtube.com/watch?v=XseyfdrHmoY&list=PLA7VQFdAJ2vfytZFoskFIBYLlNuCUGi0N&index=7&ab_channel=Mr.Soderquist
+//https://www.youtube.com/watch?v=_7Jz4MbAjCE&ab_channel=djp3
+
 
 Othello.setup_board = function(board){
     board = Othello.place_token(1, 3, 4, board);
@@ -71,8 +73,8 @@ Othello.player_to_ply = function (board) {
             R.equals(2),
             flattened_board
         )
-        ? 1
-        : 2
+            ? 1
+            : 2
     );
 };
 

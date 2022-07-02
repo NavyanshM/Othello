@@ -12,11 +12,11 @@
                 "<node_internals>/**"
             ],
             // You'll need to change this line below to point to your module.
-            "program": "${workspaceFolder}/web-app/common/Game_module.js"
+            "program": "${workspaceFolder}/web-app/common/Othello.js"
         },
         {
             "name": "Generate Docs",
-            "command": "jsdoc -c jsdoc.json & exit",
+            "command": "jsdoc -c jsdoc.json; exit",
             "request": "launch",
             "type": "node-terminal"
         },
