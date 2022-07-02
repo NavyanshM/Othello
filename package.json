@@ -11,6 +11,8 @@
     "mocha": "^9.2.2"
   },
   "dependencies": {
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "jsdc": "^0.6.13",
+    "jsdoc": "^3.6.10"
   }
 }
