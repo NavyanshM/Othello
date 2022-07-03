@@ -37,8 +37,11 @@ const cells = range(grid_rows).map(function (row_index) {
                 //footer.textContent = `${}`;
                 //Connect4.is_cell_empty(column_index, row_index, board); 
                 update_grid();
+                //console.log(column_index);
                 //const text = board[column_index][grid_rows - 1 - row_index];
-                //footer.textContent = `${text}`;
+                const text = Othello.column_as_array(board, column_index); 
+                //const text = "test" 
+                footer.textContent = `${text}`;
             }
         };
 
