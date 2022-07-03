@@ -86,8 +86,15 @@ Othello.valid_move_available = function (player, column_index, row_index, board)
 };
 
 //checks only one on top
-Othello.north = function (player, column_index, row_index, board) { 
+/* Othello.north = function (player, column_index, row_index, board) { 
     if ((height - row_index < height) && (board[column_index][height - row_index ] === Othello.other_player(player))){
+        return true;
+    };
+}; 
+ */
+
+Othello.north = function (player, column_index, row_index, board) { 
+    if ((height - row_index < height) && (Othello.column_as_array(board, column_index).includes(player, height - row_index + 1)) && (board[column_index][height - row_index ] === Othello.other_player(player))){
         return true;
     };
 }; 
@@ -97,6 +104,7 @@ Othello.column_as_array = function (board, column_index) {
     for (let i = 0; i < height; i++) {
         column.push(board[column_index][i]);
     };
+    //column = R.reverse(column); 
     return column;
 };
 
