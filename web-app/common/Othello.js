@@ -6,15 +6,15 @@
  */
 
 import R from "../common/ramda.js";
+
 const Othello = Object.create(null);
+const width = 8;
+const height = 8;
 
 Othello.token_strings = Object.freeze({
     "default": ["0", "1", "2"],
-    "disks": ["","⚪","⚫"] 
+    "disks": ["", "⚪", "⚫"]
 });
-
-const width = 8;
-const height = 8;
 
 Othello.empty_board = function (width, height) {
     return R.repeat(R.repeat(0, height), width);
@@ -26,7 +26,7 @@ Othello.place_token = function (player, column_index, row_index, board) {
         R.update(row_index, player, board[column_index]),
         board
     );
-}
+};
 
 
 //https://www.youtube.com/watch?v=XseyfdrHmoY&list=PLA7VQFdAJ2vfytZFoskFIBYLlNuCUGi0N&index=7&ab_channel=Mr.Soderquist
@@ -39,7 +39,7 @@ Othello.setup_board = function(board){
     board = Othello.place_token(2, 3, 3, board);
     board = Othello.place_token(2, 4, 4, board);
     return board; 
-}; 
+};
 
 Othello.player_to_ply = function (board) {
     const flattened_board = R.flatten(board);
