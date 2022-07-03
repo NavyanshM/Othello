@@ -82,6 +82,8 @@ Othello.is_cell_empty = function (column_index, row_index, board) {
 Othello.valid_move_available = function (player, column_index, row_index, board) {
     if (Othello.north(player, column_index, row_index, board) && Othello.is_cell_empty(column_index, row_index, board)) {
         return true; 
+    } else { 
+        return false; 
     }
 };
 

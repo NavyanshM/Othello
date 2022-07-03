@@ -42,6 +42,8 @@ const cells = range(grid_rows).map(function (row_index) {
                 const text = Othello.column_as_array(board, column_index); 
                 //const text = "test" 
                 footer.textContent = `${text}`;
+            } else { 
+                footer.textContent = 'NEXT PLAYER // GAME OVER'; 
             }
         };
 
