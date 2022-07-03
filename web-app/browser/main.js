@@ -7,7 +7,7 @@ const grid_columns = 8;
 const grid_rows = 8;
 
 let board = Othello.empty_board(grid_columns, grid_rows);
-board = Othello.setup_board(board); 
+board = Othello.setup_board(board);
 
 document.documentElement.style.setProperty("--grid-rows", grid_rows);
 document.documentElement.style.setProperty("--grid-columns", grid_columns);
