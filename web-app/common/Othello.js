@@ -55,7 +55,7 @@ Othello.player_to_ply = function (board) {
 Othello.place_token = function (player, column_index, row_index, board) {
     return R.update(
         column_index,
-        R.update(row_index, player, board[column_index]),
+        R.update(7 - row_index, player, board[column_index]),
         board
     );
 };
@@ -79,12 +79,18 @@ Othello.is_cell_empty = function (column_index, row_index, board) {
 };
 
 
-Othello.valid_move = function (player, column_index, row_index, board) {
+//create variable for height - row_index + 1
 
+Othello.valid_move_available = function (player, column_index, row_index, board) {
+    if (Othello.north(player, column_index, row_index, board) && Othello.is_cell_empty(column_index, row_index, board)) {
+        return true; 
+    }
 };
 
 Othello.north = function (player, column_index, row_index, board) { 
-    
+    if ((height - row_index < height) && (board[column_index][height - row_index + 1] === player)){
+        return true;
+    };
 }; 
 
 export default Object.freeze(Othello);

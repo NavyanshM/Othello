@@ -19,21 +19,21 @@ const range = (n) => Array.from({"length": n}, (ignore, k) => k);
 
 const cells = range(grid_rows).map(function (row_index) {
     const row = document.createElement("div");
-    row.className = "row";
+    row.className = "row"; 
 
     const rows = range(grid_columns).map(function (column_index) {
         const cell = document.createElement("div");
         cell.className = "cell";
-        
+
         cell.onclick = function () {
+            const player = Othello.player_to_ply(board);
             //cell.textContent = `(${row_index}, ${column_index})`;
             //const legal_move = Othello.free_columns(
                 //board
             //).includes(column_index);
-            if (Othello.is_cell_empty(column_index, row_index, board)) {
+            if (Othello.valid_move_available(player, column_index, row_index, board)) {
                 //footer.textContent = `${board[column_index][grid_rows - 1 - row_index]}`
-                const player = Othello.player_to_ply(board);
-                board = Othello.ply(player, column_index, row_index, board);
+                board = Othello.place_token(player, column_index, row_index, board);
                 //footer.textContent = `${}`;
                 //Connect4.is_cell_empty(column_index, row_index, board); 
                 update_grid();
