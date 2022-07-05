@@ -5,7 +5,7 @@ import Othello from "../common/Othello.js";
 
 const grid_columns = 8;
 const grid_rows = 8;
-let player = 1; 
+let player = 2; 
 
 let board = Othello.empty_board(grid_columns, grid_rows);
 board = Othello.setup_board(board);
@@ -17,7 +17,7 @@ const grid = document.getElementById("grid");
 const footer = document.getElementById("footer");
 
 //board[x] is column x
-footer.textContent = `${Othello.row_as_array(board, 2)} | ${board[4]}`;
+//footer.textContent = `${Othello.row_as_array(board, 2)} | ${board[4]}`;
 
 const range = (n) => Array.from({"length": n}, (ignore, k) => k);
 
@@ -41,19 +41,22 @@ const cells = range(grid_rows).map(function (row_index) {
                 //footer.textContent = `${}`;
                 //Connect4.is_cell_empty(column_index, row_index, board); 
                 update_grid();
-                footer.textContent = `MOVE MADE | PLAYER ${Othello.other_player(player)} TO PLAY!`; 
+                //footer.textContent = `MOVE MADE | PLAYER ${player} TO PLAY!`; 
                 //console.log(column_index);
                 //const text = board[column_index][grid_rows - 1 - row_index];
-                const text = Othello.column_as_array(board, column_index); 
+                //const text = Othello.column_as_array(board, column_index); 
                 //const text = "test" 
+                //let text = column_index;
                 //footer.textContent = `${text}`;
             } else { 
-                if (Othello.is_cell_empty(column_index, row_index, board) === 0){
-                    footer.textContent = `ONLY PLACE IN AN EMPTY CELL`;  
+                //footer.textContent = `${text}`;
+                if (Othello.is_cell_empty(column_index, row_index, board) === false){
+                    //footer.textContent = `ONLY PLACE IN AN EMPTY CELL`;  
                 } else {
-                    footer.textContent = `NOT A VALID MOVE`; 
+                    //footer.textContent = `NOT A VALID MOVE`; 
                 };
             };
+            //footer.textContent = `${R.transpose(board)}`; 
         };
 
         row.append(cell);

@@ -111,10 +111,10 @@ footer
 
 .cell.token_1
 {
-    background-image: url("assets/White_token.png");
+    background-image: url("assets/Black_Token.png");
 }
 
 .cell.token_2
 {
-    background-image: url("assets/Black_Token.png");
+    background-image: url("assets/White_token.png");
 }
