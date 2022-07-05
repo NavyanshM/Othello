@@ -5,6 +5,7 @@ import Othello from "../common/Othello.js";
 
 const grid_columns = 8;
 const grid_rows = 8;
+let player = 1; 
 
 let board = Othello.empty_board(grid_columns, grid_rows);
 board = Othello.setup_board(board);
@@ -14,6 +15,9 @@ document.documentElement.style.setProperty("--grid-columns", grid_columns);
 
 const grid = document.getElementById("grid");
 const footer = document.getElementById("footer");
+
+//board[x] is column x
+footer.textContent = `${Othello.row_as_array(board, 2)} | ${board[4]}`;
 
 const range = (n) => Array.from({"length": n}, (ignore, k) => k);
 
@@ -26,25 +30,30 @@ const cells = range(grid_rows).map(function (row_index) {
         cell.className = "cell";
 
         cell.onclick = function () {
-            const player = Othello.player_to_ply(board);
+            //player = Othello.other_player;
             //cell.textContent = `(${row_index}, ${column_index})`;
             //const legal_move = Othello.free_columns(
                 //board
             //).includes(column_index);
-            if (Othello.valid_move_available(player, column_index, row_index, board)) {
+            if (Othello.is_valid_move(player, column_index, row_index, board)) {
                 //footer.textContent = `${board[column_index][grid_rows - 1 - row_index]}`
                 board = Othello.place_token(player, column_index, row_index, board);
                 //footer.textContent = `${}`;
                 //Connect4.is_cell_empty(column_index, row_index, board); 
                 update_grid();
+                footer.textContent = `MOVE MADE | PLAYER ${Othello.other_player(player)} TO PLAY!`; 
                 //console.log(column_index);
                 //const text = board[column_index][grid_rows - 1 - row_index];
                 const text = Othello.column_as_array(board, column_index); 
                 //const text = "test" 
-                footer.textContent = `${text}`;
+                //footer.textContent = `${text}`;
             } else { 
-                footer.textContent = 'NEXT PLAYER // GAME OVER'; 
-            }
+                if (Othello.is_cell_empty(column_index, row_index, board) === 0){
+                    footer.textContent = `ONLY PLACE IN AN EMPTY CELL`;  
+                } else {
+                    footer.textContent = `NOT A VALID MOVE`; 
+                };
+            };
         };
 
         row.append(cell);
@@ -74,8 +83,8 @@ const update_grid = function () {
             }
         });
     });
-    const player = Othello.player_to_ply(board);
-    //footer.textContent = `Player ${player} to play!`;
+    player = Othello.other_player(player);
+    //footer.textContent = `Player ${Othello.other_player(player)} to play!`;
 };
 
 update_grid();

@@ -13,7 +13,7 @@ const height = 8;
 
 Othello.token_strings = Object.freeze({
     "default": ["0", "1", "2"],
-    "disks": ["", "⚪", "⚫"]
+    "disks": ["", "⚫", "⚪"]
 });
 
 Othello.empty_board = function (width, height) {
@@ -30,6 +30,8 @@ Othello.setup_board = function(board){
     board = Othello.place_token(1, 4, 3, board);
     board = Othello.place_token(2, 3, 3, board);
     board = Othello.place_token(2, 4, 4, board);
+    board = Othello.place_token(2, 4, 5, board);
+    board = Othello.place_token(2, 4, 6, board);
     return board;
 };
 
@@ -37,7 +39,7 @@ Othello.setup_board = function(board){
 //board = Othello.place_token(2, 0, 0, board);
 //};
 
-Othello.player_to_ply = function (board) {
+/* Othello.player_to_ply = function (board) {
     const flattened_board = R.flatten(board);
     return (
         R.count(
@@ -47,10 +49,10 @@ Othello.player_to_ply = function (board) {
             R.equals(2),
             flattened_board
         )
-            ? 1
-            : 2
+            ? 2
+            : 1
     );
-};
+}; */
 
 Othello.place_token = function (player, column_index, row_index, board) {
     return R.update(
@@ -79,12 +81,12 @@ Othello.is_cell_empty = function (column_index, row_index, board) {
 };
 
 
-Othello.valid_move_available = function (player, column_index, row_index, board) {
-    if (Othello.north(player, column_index, row_index, board) && Othello.is_cell_empty(column_index, row_index, board)) {
+Othello.is_valid_move = function (player, column_index, row_index, board) {
+    if ((Othello.north(player, column_index, row_index, board) || (Othello.south(player, column_index, row_index, board)))&& (Othello.is_cell_empty(column_index, row_index, board))) {
         return true; 
     } else { 
         return false; 
-    }
+    };
 };
 
 //checks only one on top
@@ -101,13 +103,28 @@ Othello.north = function (player, column_index, row_index, board) {
     };
 }; 
 
-Othello.column_as_array = function (board, column_index) {
-    let column = [];
-    for (let i = 0; i < height; i++) {
-        column.push(board[column_index][i]);
+Othello.south = function (player, column_index, row_index, board) { 
+    if ((height - row_index > 1) && (R.reverse(Othello.column_as_array(board, column_index))).includes(player, height - row_index + 1) && (board[column_index][height - row_index ] === Othello.other_player(player))){
+        return true;
     };
+};
+
+Othello.column_as_array = function (board, column_index) {
+    const column = board[column_index];
+    /* for (let i = 0; i < height; i++) {
+        column.push(board[column_index][i]);
+    }; */
     //column = R.reverse(column); 
     return column;
+};
+
+Othello.row_as_array = function (board, row_index) {
+    const row = R.transpose(board)[row_index];
+    /* for (let i = 0; i < height; i++) {
+        column.push(board[column_index][i]);
+    }; */
+    //column = R.reverse(column); 
+    return row;
 };
 
 Othello.other_player = function(player){
