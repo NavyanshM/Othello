@@ -1,11 +1,6 @@
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-FOR REVIEWER: PLEASE COULD YOU ONLY COMMENT ON THE FRONT END UI FEATURES A PLAYER WOULD WANT. I.E: GAME SETTING OPTIONS AND PARAMETERS TO BE DISPLAYED. THANK YOU 
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 # Computing 2 Coursework Submission.
-**CID**: [ENTER CID] 
+**CID**: 02029187
 
 This is the submission template for your Computing 2 Applications coursework submission.
 
