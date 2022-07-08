@@ -100,24 +100,30 @@ const cells = range(grid_rows).map(function (row_index) {
                 update_grid();  */
                 //footer.textContent = `${column_index} , ${row_index} PLACED || PLAYER ${player}'S MOVE`;  
                 //update_grid();
-                const col = column_index;
-                const row = row_index; 
 
-                board = Othello.flip_line(player, 0, -1,col, row, board)[0]; 
+                //board = Othello.flip_line(player, 0, 1, column_index, row_index, board)[0];
+                board = Othello.flip_line(player, 0, 1, column_index, row_index, board)[0];
+                //board = Othello.flip_line(player, 1, 0, column_index, row_index, board)[0];  
+                //board = Othello.flip_line(player, -1, 0, column_index, row_index, board)[0]; 
+                //board = Othello.flip_line(player, -1, -1, column_index, row_index, board)[0]; 
+                //board = Othello.flip_line(player, 1, 1, column_index, row_index, board)[0]; 
+                //board = Othello.flip_line(player, -1, 1, column_index, row_index, board)[0]; 
+                //board = Othello.flip_line(player, 1, -1, column_index, row_index, board)[0]; 
+
                 //update_grid();
-                board = Othello.flip_line(player, 0, 1, col, row, board)[0];
+                //board = Othello.flip_line(player, 0, 1, col, row, board)[0];
                 //update_grid();
-                board = Othello.flip_line(player, 1, 0, col, row, board)[0];
+                //board = Othello.flip_line(player, 1, 0, col, row, board)[0];
                 //update_grid();
-                board = Othello.flip_line(player, -1, 0, col, row, board)[0];
+                //board = Othello.flip_line(player, -1, 0, col, row, board)[0];
                 //update_grid();
-                board = Othello.flip_line(player, -1, 1, col, row, board)[0];
+                //board = Othello.flip_line(player, -1, 1, col, row, board)[0];
                 //update_grid();
-                board = Othello.flip_line(player, 1, -1, col, row, board)[0];
+                //board = Othello.flip_line(player, 1, -1, col, row, board)[0];
                 //update_grid();
-                board = Othello.flip_line(player, -1, -1, col, row, board)[0];
+                //board = Othello.flip_line(player, -1, -1, col, row, board)[0];
                 //update_grid();
-                board = Othello.flip_line(player, 1, 1, col, row, board)[0];  
+                //board = Othello.flip_line(player, 1, 1, col, row, board)[0];  
 
                 
 
@@ -133,10 +139,10 @@ const cells = range(grid_rows).map(function (row_index) {
             } else { 
                 //footer.textContent = `${text}`;
                 if (Othello.is_cell_empty(column_index, row_index, board) === false){
-                    footer.textContent = `ONLY PLACE IN AN EMPTY CELL || PLAYER ${player}'S MOVE `;  
+                    footer.textContent = `ONLY PLACE IN AN EMPTY CELL || PLAYER ${player}'S MOVE || ${board}`;  
                     //footer.textContent = `ONLY PLACE IN AN EMPTY CELL || ${column_index} , ${row_index} is a ${board[column_index][row_index]} `;  
                 } else {
-                    footer.textContent = `NOT A VALID MOVE || PLAYER ${player}'S MOVE`; 
+                    footer.textContent = `NOT A VALID MOVE || PLAYER ${player}'S MOVE || ${board}||${legal_moves_board}`; 
                     //footer.textContent = `NOT A VALID MOVE || ${column_index} , ${row_index} is a ${board[column_index][row_index]}|| ${board} || ${legal_moves_board}`; 
                 };
             };

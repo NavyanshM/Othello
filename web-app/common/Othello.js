@@ -29,12 +29,12 @@ Othello.setup_board = function(board){
     board = Othello.place_token(1, 3, 4, board);
     board = Othello.place_token(1, 4, 3, board);
     board = Othello.place_token(2, 3, 3, board);
-    board = Othello.place_token(2, 4, 4, board);
-/*     board = Othello.place_token(2, 4, 5, board);
+    board = Othello.place_token(1, 4, 4, board);
+    board = Othello.place_token(1, 4, 5, board);
     board = Othello.place_token(2, 4, 6, board);
     board = Othello.place_token(1, 2, 3, board);
     board = Othello.place_token(1, 2, 2, board); 
-    board = Othello.place_token(2, 3, 6, board);    */
+    board = Othello.place_token(2, 3, 6, board);     
     return board;
 };
 
@@ -190,7 +190,8 @@ Othello.adjacent_support = function(player, delta_column, delta_row, column_inde
 Othello.find_valid_moves = function(player, legal_moves_board, board){
     for (let row = 0; row < height; row++){
         for (let column = 0; column < width; column++){
-            if (Othello.is_cell_empty(column, row, board)){
+            //7 - ROW 
+            if (Othello.is_cell_empty(column, 7 - row, board)){
                 //legal_moves_board = Othello.place_token(player, column, row, legal_moves_board);
                 let north = Othello.adjacent_support(player, 0, -1, column, row, board);
                 let south = Othello.adjacent_support(player, 0, 1, column, row, board);
@@ -248,18 +249,23 @@ Othello.flip_line = function(player, delta_column, delta_row, column_index, row_
         return [board, false]; 
     }; 
 
-    if (board[column_index + delta_column][row_index + delta_row] === Othello.other_player(player)){
+    if (board[column_index + delta_column][row_index + delta_row] === player){
         //board = Othello.place_token(1, 7, 7, board);
+        //board = Othello.place_token(player, column_index + delta_column, row_index + delta_row, board);
         board = Othello.place_token(player, column_index + delta_column, row_index + delta_row, board);
+
         return [board, true]; 
+        
     } else {
-        if(Othello.flip_line(player, delta_column, delta_row, column_index + delta_column, row_index + delta_row, board)[1] === true){
+        if(Othello.flip_line(player, delta_column, delta_row, column_index + delta_column, row_index + delta_row, board)[1]){
+            board = Othello.flip_line(player, delta_column, delta_row, column_index + delta_column, row_index + delta_row, board)[0]; 
             board = Othello.place_token(player, column_index + delta_column, row_index + delta_row, board);
+            //board = Othello.place_token(player, 6 + delta_column, 6 + delta_row, board);
             return [board, true];
         } else {
             return [board, false];
-        };
-    };
+        }
+    } 
  }; 
 
 
