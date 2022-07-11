@@ -223,7 +223,6 @@ const autoplace = function () {
                     setTimeout(flip_tokens(player, col_num, row_num, board), 100);
                     player = Othello.other_player(player);
                     no_legal_move_counter = 0;
-                    update_grid();
                     if (player === 1) {
                         black_turn_details_display();
                     } else {
