@@ -51,14 +51,14 @@ header
 {
    /*  background-color: #946a00;
     background-image: url("assets/wood-pattern.png"); */
-    font-size: 72pt;
+    font-size: 400%;
     font-weight: bold;
     font-family: 'Old English Five', sans-serif;
     height: var(--header-height);
 /*     padding-top: 10px; */
     position: absolute;
     text-align: center;
-    left: 100px;
+    left: 0px;
     color: black;  
     width: 100%;
 }
@@ -278,9 +278,9 @@ main
     border: 10px solid black;
     outline: none;
     transition: 1s ease-in-out;
-    position: relative;
-    left: 28%;
-    top: 10%; 
+    position:absolute;
+    left: 85%;
+    top: 15%; 
     
   }
   
