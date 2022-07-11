@@ -1,6 +1,6 @@
 /**
  * @namespace Othello
- * @description Othello.js defines the gameplay, rules and conditions for the game Othello. This game module can be implemented with a HTML and CSS web-app interface.
+   @description Othello.js defines the gameplay, rules and conditions for the game Othello. This game module can be implemented with a HTML and CSS web-app interface.
  * @author Navyansh Malhotra
  * @version v1.0
  */

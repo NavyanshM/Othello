@@ -68,7 +68,7 @@ const white_turn_details_display = function () {
 
 const range = (n) => Array.from({"length": n}, (ignore, k) => k);
 
-const update_grid = function () {
+const update_grid = function (cells) {
     "use strict";
     cells.forEach(function (row, row_index) {
         row.forEach(function (cell, column_index) {
