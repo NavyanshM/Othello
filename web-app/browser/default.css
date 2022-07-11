@@ -1,11 +1,15 @@
+@font-face {
+    font-family: Old English Five; 
+    src: url('assets/OldEnglishFive.ttf'); 
+  }
+
 :root
 {
     --grid-columns: 8;
     --grid-rows: 8;
     --grid-aspect: var(--grid-columns) / var(--grid-rows);
 
-    --footer-height: 48px;
-    --header-height: 84px;
+    --header-height: 148px;
 
     --palette-accent0: #804;
     --palette-accent1: #d07;
@@ -21,7 +25,14 @@
     --palette-secondary1: #3daee9;
 
     --grid-background: rgba(87, 235, 68, 1);
+
+    --switches-bg-color: black;
+    --switches-label-color: white ;
+    --switch-bg-color: white;
+    --switch-text-color: black ;
 }
+
+
 
 *
 {
@@ -31,6 +42,8 @@
 body
 {
     color: var(--palette-base5);
+    background-color: #946a00;
+    background-image: url("assets/wood-pattern.png");
     font-family: "Fira Sans", sans-serif;
     font-size: 16pt;
     height: 100%;
@@ -41,80 +54,140 @@ body
 
 header
 {
-    background: var(--palette-accent2);
-    font-size: 28pt;
+   /*  background-color: #946a00;
+    background-image: url("assets/wood-pattern.png"); */
+    font-size: 72pt;
     font-weight: bold;
+    font-family: 'Old English Five', sans-serif;
     height: var(--header-height);
-    padding-top: 10px;
+/*     padding-top: 10px; */
     position: absolute;
     text-align: center;
+    color: black;  
     width: 100%;
 }
 
 main
 {
-    background: var(--palette-base2);
-    height: calc(100% - var(--header-height) - var(--footer-height));
+    /* background: var(--palette-base2); */
+    /* background-color: #946a00;
+    background-image: url("assets/wood-pattern.png"); */
+    height: calc(100% - var(--header-height));
     position: absolute;
     top: var(--header-height);
     width: calc(100% );
 }
 
-footer
-{
-    background: var(--palette-secondary0);
-    bottom: 0px;
-    height: var(--footer-height);
-    padding: 0.5em;
-    position: absolute;
-    width: 100%;
+
+.container {
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.grid
-{
-    aspect-ratio: var(--grid-aspect);
-    background-size: 100%;
-    margin: 0;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0%;
+.center {
+  width: 500px;
+  height: 200px;
+  position: absolute;
+}
+
+.btn {
+  width: 500px;
+  height: 200px;
+  cursor: pointer;
+  background: transparent;
+  border: 10px solid black;
+  outline: none;
+  transition: 1s ease-in-out;
+}
+
+
+
+.btn:hover {
+  transition: 1s ease-in-out;
+  background: whitesmoke; 
+}
+
+.btn span {
+  color: black;
+  font-size: 42px;
+  font-weight: 100;
+  font-family: 'Old English Five', sans-serif;
+}
+
+
+
+.btn2 {
+    width: 350px;
+    height: 85px;
+    cursor: pointer;
+    background: transparent;
+    border: 10px solid black;
+    outline: none;
+    transition: 1s ease-in-out;
     position: relative;
-    top: 2.5%;
-    max-height: 95%;
-    max-width: 95%;
-}
+    left: 7px; 
+    top:185px;
+  }
+  
+  
+  
+  .btn2:hover {
+    transition: 1s ease-in-out;
+    background: whitesmoke; 
+  }
+  
+  .btn2 span {
+    color: black;
+    font-size: 32px;
+    font-weight: 100;
+    font-family: 'Old English Five', sans-serif;
+  }
 
-.row
-{
-    height: calc(100% / var(--grid-rows));
+  .btn3 {
+    width: 350px;
+    height: 85px;
+    cursor: pointer;
+    background: transparent;
+    border: 10px solid black;
+    outline: none;
+    transition: 1s ease-in-out;
     position: relative;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-}
+    top: 295px;
+    left: -350px;
+  }
+  
+  
+  
+  .btn3:hover {
+    transition: 1s ease-in-out;
+    background: whitesmoke; 
+  }
+  
+  .btn3 span {
+    color: black;
+    font-size: 32px;
+    font-weight: 100;
+    font-family: 'Old English Five', sans-serif;
+  }
 
-.cell
-{
-    background-size: cover;
-    display: inline-block;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    width: calc(100% / var(--grid-columns));
-}
+a { 
+    text-decoration: none; 
+    color: black; 
+   }
 
-.cell.empty
-{
-    background-image: url("assets/Empty_Green.png");   
-}
+a:visited { 
+    text-decoration: none; 
+    color: black; 
+   }
 
-.cell.token_1
-{
-    background-image: url("assets/Black_Token.png");
-}
 
-.cell.token_2
-{
-    background-image: url("assets/White_token.png");
-}
+
+
+

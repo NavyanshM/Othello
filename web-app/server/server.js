@@ -7,7 +7,7 @@
  * @version 2021/22
  */
 import express from "express";
-import Stats4 from "./Stats4.js";
+//import Stats4 from "./Stats4.js";
 
 const port = 8080;
 const app = express();
@@ -21,7 +21,7 @@ app.use("/docs/", express.static("docs"));
 // JSON-RPC – POST requests.
 
 // This is the module that will be exposed with a JSON_RPC interface:
-const rpc_module = Stats4;
+//const rpc_module = Stats4;
 
 app.use("/", express.json());
 app.post("/", function (req, res) {
@@ -30,11 +30,11 @@ app.post("/", function (req, res) {
     try {
         const {method, params} = request_object;
         id = request_object.id;
-        const result = rpc_module[method](...params);
+        //const result = rpc_module[method](...params);
         if (id !== null) {
             const response_object = {
                 "jsonrpc": "2.0",
-                "result": result,
+                //"result": result,
                 "id": id
             };
             res.json(response_object);

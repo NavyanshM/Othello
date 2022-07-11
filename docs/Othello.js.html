@@ -1,4 +1,48 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>Othello.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Othello.html">Othello</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">Othello.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @namespace Othello
  * @description Othello.js defines the gameplay, rules and conditions for the game Othello. This game module can be implemented with a HTML and CSS web-app interface. 
  * @author Navyansh Malhotra
@@ -35,16 +79,6 @@
  * Displays tokens as coloured disks.
  * @property {string[]} zombies ["🟫", "🚧", "🧟"]
  * Displays tokens as zombies and barricades.
- */
-
-/**
- * Impure Function.
- * Logs to the console a string representation of a board,
- * and returns that board.
- * @memberof Connect4
- * @function
- * @param {Connect4.board} board The board to represent.
- * @returns {Connect4.board} String representation.
  */
 
 /**
@@ -121,11 +155,11 @@ Othello.check_line = function (player, delta_column, delta_row, column_index, ro
     }; 
 
     
-    if ((row_index + delta_row < 0) || (row_index + delta_row > height - 1)){
+    if ((row_index + delta_row &lt; 0) || (row_index + delta_row > height - 1)){
         return false; 
     };
 
-    if ((column_index + delta_column < 0) || (column_index + delta_column > width - 1)){
+    if ((column_index + delta_column &lt; 0) || (column_index + delta_column > width - 1)){
         return false; 
     };
 
@@ -135,11 +169,11 @@ Othello.check_line = function (player, delta_column, delta_row, column_index, ro
 Othello.adjacent_support = function(player, delta_column, delta_row, column_index, row_index, board){
     let other_player = Othello.other_player(player);
 
-    if ((row_index + delta_row < 0) || (row_index + delta_row > height - 1)){
+    if ((row_index + delta_row &lt; 0) || (row_index + delta_row > height - 1)){
         return false; 
     };
 
-    if ((column_index + delta_column < 0) || (column_index + delta_column > width - 1)){
+    if ((column_index + delta_column &lt; 0) || (column_index + delta_column > width - 1)){
         return false; 
     };
 
@@ -147,11 +181,11 @@ Othello.adjacent_support = function(player, delta_column, delta_row, column_inde
         return false; 
     };
 
-    if ((row_index + delta_row + delta_row < 0) || (row_index + delta_row + delta_row > height - 1)){
+    if ((row_index + delta_row + delta_row &lt; 0) || (row_index + delta_row + delta_row > height - 1)){
         return false; 
     };
 
-    if ((column_index + delta_column + delta_column < 0) || (column_index + delta_column + delta_column > width - 1)){
+    if ((column_index + delta_column + delta_column &lt; 0) || (column_index + delta_column + delta_column > width - 1)){
         return false; 
     };
 
@@ -160,8 +194,8 @@ Othello.adjacent_support = function(player, delta_column, delta_row, column_inde
 
 Othello.find_valid_moves = function(player, legal_moves_board, board){
     legal_moves_board = Othello.empty_board(width, height); 
-    for (let row = 0; row < height; row++){
-        for (let column = 0; column < width; column++){
+    for (let row = 0; row &lt; height; row++){
+        for (let column = 0; column &lt; width; column++){
             //7 - ROW 
             if (Othello.is_cell_empty(column, 7 - row, board)){
                 //legal_moves_board = Othello.place_token(player, column, row, legal_moves_board);
@@ -187,8 +221,8 @@ Othello.find_valid_moves = function(player, legal_moves_board, board){
 
 Othello.legal_moves_available = function(player, legal_moves_board){
     let available_moves = false; 
-    for (let row = 0; row < height; row++){
-        for (let column = 0; column < width; column++){
+    for (let row = 0; row &lt; height; row++){
+        for (let column = 0; column &lt; width; column++){
             if (legal_moves_board[column][row] === player){
                 available_moves = true; 
             }
@@ -217,8 +251,8 @@ Othello.other_player = function(player){
 
 Othello.score = function(player, board){
     let score = 0; 
-    for (let i = 0; i< 8; i++){
-        for (let j = 0; j < 8; j++){
+    for (let i = 0; i&lt; 8; i++){
+        for (let j = 0; j &lt; 8; j++){
             if (board[i][j] === player){
                 score = score + 1; 
             }
@@ -247,8 +281,8 @@ Othello.winner = function(board){
 
 Othello.random_legal_move = function(player, legal_moves_board){
     let legal_moves_array = [];
-    for (let i = 0; i < 8; i++){
-        for (let j = 0; j < 8; j++){
+    for (let i = 0; i &lt; 8; i++){
+        for (let j = 0; j &lt; 8; j++){
             if (legal_moves_board[i][j] === player){
                 legal_moves_array.push([i,j])
             } 
@@ -256,4 +290,28 @@ Othello.random_legal_move = function(player, legal_moves_board){
     }
     return legal_moves_array[Math.floor(Math.random() * legal_moves_array.length)]; 
 }
-export default Object.freeze(Othello); 
+export default Object.freeze(Othello); </code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Mon Jul 11 2022 14:19:47 GMT+0800 (Singapore Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

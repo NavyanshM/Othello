@@ -1,4 +1,4 @@
-import Connect4 from "../common/Connect4.js";
+import Othello from "../common/Othello.js";
 import R from "../common/ramda.js";
 
 const throw_if_invalid = function () {
