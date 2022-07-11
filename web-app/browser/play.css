@@ -1,10 +1,9 @@
 @font-face {
-    font-family: Old English Five; 
-    src: url('assets/OldEnglishFive.ttf'); 
-  }
+    font-family: Old English Five;
+    src: url('assets/OldEnglishFive.ttf');
+}
 
-:root
-{
+:root {
     --grid-columns: 8;
     --grid-rows: 8;
     --grid-aspect: var(--grid-columns) / var(--grid-rows);
@@ -28,13 +27,11 @@
 }
 
 
-*
-{
+* {
     box-sizing: border-box;
 }
 
-body
-{
+body {
     color: var(--palette-base5);
     background-color: #946a00;
     background-image: url("assets/wood-pattern.png");
@@ -47,36 +44,27 @@ body
     overflow: hidden;
 }
 
-header
-{
-   /*  background-color: #946a00;
-    background-image: url("assets/wood-pattern.png"); */
+header {
     font-size: 400%;
     font-weight: bold;
     font-family: 'Old English Five', sans-serif;
     height: var(--header-height);
-/*     padding-top: 10px; */
     position: absolute;
     text-align: center;
     left: 0px;
-    color: black;  
+    color: black;
     width: 100%;
 }
 
-main
-{
-    /* background: var(--palette-base2); */
-    /* background-color: #946a00;
-    background-image: url("assets/wood-pattern.png"); */
+main {
     height: calc(100% - var(--header-height));
     position: absolute;
     top: var(--header-height);
-    width: calc(100% );
+    width: calc(100%);
 }
 
 
-.grid
-{
+.grid {
     aspect-ratio: var(--grid-aspect);
     background-size: 100%;
     margin: 0;
@@ -89,8 +77,7 @@ main
     max-width: 60%;
 }
 
-.row
-{
+.row {
     height: calc(100% / var(--grid-rows));
     position: relative;
     padding: 0;
@@ -98,8 +85,7 @@ main
     width: 100%;
 }
 
-.cell
-{
+.cell {
     background-size: cover;
     display: inline-block;
     height: 100%;
@@ -109,128 +95,89 @@ main
     width: calc(100% / var(--grid-columns));
 }
 
-.cell.empty
-{
-    background-image: url("assets/Empty_Green.png");   
+.cell.empty {
+    background-image: url("assets/Empty_Green.png");
 }
 
 
-.cell.token_1
-{
+.cell.token_1 {
     background-image: url("assets/Black_Token.png");
 }
 
-.cell.token_2
-{
+.cell.token_2 {
     background-image: url("assets/White_token.png");
 }
 
-.cell.token_3
-{
-    /* background-image: url("assets/Grey_Token.png"); */
-    background-image: url("assets/Empty_Green.png");  
+.cell.token_3 {
+    background-image: url("assets/Empty_Green.png");
 }
 
 
 
-.cell.empty_black
-{
-    background-image: url("assets/Empty_Green.png"); 
+.cell.empty_black {
+    background-image: url("assets/Empty_Green.png");
 }
-.cell.empty_black:hover
-{
+
+.cell.empty_black:hover {
     background-image: url("assets/Black_Token.png");
 }
 
-.cell.token_3_black
-{
-         background-image: url("assets/Grey_Token_for_black.png"); 
+.cell.token_3_black {
+    background-image: url("assets/Grey_Token_for_black.png");
 }
 
 
-.cell.token_3_black:hover
-{
+.cell.token_3_black:hover {
     background-image: url("assets/Black_Token.png");
 }
 
-.cell.empty_white
-{
-    background-image: url("assets/Empty_Green.png"); 
+.cell.empty_white {
+    background-image: url("assets/Empty_Green.png");
 }
-.cell.empty_white:hover
-{
+
+.cell.empty_white:hover {
     background-image: url("assets/White_token.png");
 }
 
-.cell.token_3_white
-{
-         background-image: url("assets/Grey_Token.png");  
+.cell.token_3_white {
+    background-image: url("assets/Grey_Token.png");
 }
 
-.cell.token_3_white:hover
-{
+.cell.token_3_white:hover {
     background-image: url("assets/White_token.png");
 }
 
 
-#black_details_black_turn
-{
+#black_details_black_turn {
     /* background: black; */
-    color:black;
-    border: black; 
-    /* border-width: 70%; */
-    /* border-style: outset; */
-/*     border-right-style: solid;
-    border-right: black;
-    border-right-width: 100% ; */
+    color: black;
+    border: black;
     border-bottom-style: solid;
     border-top-style: solid;
-    /* border-radius: 10%; */
-    background-image:url("assets/wood-pattern.png");
+    background-image: url("assets/wood-pattern.png");
 
 
 }
 
-#black_details
-{
-    /* background: black; */
-    color:black;
-    /* background-image:url("assets/wood-pattern.png"); */
-/*     border: black;  */
-    /* border-width: 70%; */
-    /* border-style: outset; */
-/*     border-right-style: solid;
-    border-right: black;
-    border-right-width: 100% ; */
-   /*  border-bottom-style: solid; */
-    /* border-radius: 10%; */
-
-
+#black_details {
+    color: black;
 }
 
-#white_details_white_turn
-{
-    /* background: white; */
-    color: white; 
+#white_details_white_turn {
+    color: white;
     left: 80%;
-    border: white; 
+    border: white;
     border-bottom-style: solid;
     border-top-style: solid;
-    background-image:url("assets/wood-pattern.png");
+    background-image: url("assets/wood-pattern.png");
 }
 
-#white_details
-{
-    /* background: white; */
-    color: white; 
+#white_details {
+    color: white;
     left: 80%;
-    /* background-image:url("assets/wood-pattern.png"); */
-/*     border: white; 
-    border-bottom-style: solid; */
 }
 
-.player_details
-{
+.player_details {
     top: calc(var(--header-height));
     font-size: 42pt;
     font-weight: bold;
@@ -239,32 +186,6 @@ main
     position: absolute;
     width: 20%;
 }
-
-.play_button {
-	box-sizing: border-box;
-	display:block;
-	width:80px;
-	height:80px;
-	padding-top: 14px;
-	padding-left: 8px;
-	line-height: 20px;
-	border: 6px solid #fff;
-	border-radius: 50%;
-	color:#f5f5f5;
-	text-align:center;
-	text-decoration:none;
-	background-color: rgba(0,0,0,0.5);
-	font-size:20px;
-	font-weight:bold;
-	transition: all 0.3s ease;
-}
-.play_button:hover {
-	background-color: rgba(0,0,0,0.8);
-	box-shadow: 0px 0px 10px rgba(255,255,100,1);
-	text-shadow: 0px 0px 10px rgba(255,255,100,1);
-}
-
-
 
 .btn {
     width: 150px;
@@ -278,40 +199,35 @@ main
     border: 10px solid black;
     outline: none;
     transition: 1s ease-in-out;
-    position:absolute;
+    position: absolute;
     left: 85%;
-    top: 15%; 
-    
-  }
-  
-  
-  
-  .btn:hover {
+    top: 15%;
+
+}
+
+.btn:hover {
     transition: 1s ease-in-out;
-    background: whitesmoke; 
+    background: whitesmoke;
     background-image: url(assets/home.png);
     background-size: 100px;
     background-repeat: no-repeat;
     background-position: center;
-  }
-  
-  .btn span {
-    left: 200px; 
+}
+
+.btn span {
+    left: 200px;
     color: transparent;
     font-size: 36px;
     font-weight: 100;
     font-family: 'Old English Five', sans-serif;
-  }
-  
-  a { 
-    text-decoration: none; 
-    color: transparent; 
-   }
+}
 
-a:visited { 
-    text-decoration: none; 
-    color: transparent; 
-   }
+a {
+    text-decoration: none;
+    color: transparent;
+}
 
-
-
+a:visited {
+    text-decoration: none;
+    color: transparent;
+}

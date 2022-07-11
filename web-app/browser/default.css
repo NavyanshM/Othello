@@ -1,81 +1,68 @@
 @font-face {
-    font-family: Old English Five; 
-    src: url('assets/OldEnglishFive.ttf'); 
-  }
-
-:root
-{
-    --grid-columns: 8;
-    --grid-rows: 8;
-    --grid-aspect: var(--grid-columns) / var(--grid-rows);
-
-    --header-height: 148px;
-
-    --palette-accent0: #804;
-    --palette-accent1: #d07;
-    --palette-accent2: #f08;
-    --palette-accent3: #e48;
-    --palette-base0: #3b87b5;
-    --palette-base1: #471ca4;
-    --palette-base2: rgba(87, 235, 68, 1);
-    --palette-base3: #4d5057;
-    --palette-base4: #616569;
-    --palette-base5: #eff0f1;
-    --palette-secondary0: #345e75;
-    --palette-secondary1: #3daee9;
-
-    --grid-background: rgba(87, 235, 68, 1);
-
-    --switches-bg-color: black;
-    --switches-label-color: white ;
-    --switch-bg-color: white;
-    --switch-text-color: black ;
+  font-family: Old English Five;
+  src: url('assets/OldEnglishFive.ttf');
 }
 
+:root {
+  --grid-columns: 8;
+  --grid-rows: 8;
+  --grid-aspect: var(--grid-columns) / var(--grid-rows);
 
+  --header-height: 148px;
 
-*
-{
-    box-sizing: border-box;
+  --palette-accent0: #804;
+  --palette-accent1: #d07;
+  --palette-accent2: #f08;
+  --palette-accent3: #e48;
+  --palette-base0: #3b87b5;
+  --palette-base1: #471ca4;
+  --palette-base2: rgba(87, 235, 68, 1);
+  --palette-base3: #4d5057;
+  --palette-base4: #616569;
+  --palette-base5: #eff0f1;
+  --palette-secondary0: #345e75;
+  --palette-secondary1: #3daee9;
+
+  --grid-background: rgba(87, 235, 68, 1);
+
+  --switches-bg-color: black;
+  --switches-label-color: white;
+  --switch-bg-color: white;
+  --switch-text-color: black;
 }
 
-body
-{
-    color: var(--palette-base5);
-    background-color: #946a00;
-    background-image: url("assets/wood-pattern.png");
-    font-family: "Fira Sans", sans-serif;
-    font-size: 16pt;
-    height: 100%;
-    margin: 0;
-    position: absolute;
-    width: 100%;
+* {
+  box-sizing: border-box;
 }
 
-header
-{
-   /*  background-color: #946a00;
-    background-image: url("assets/wood-pattern.png"); */
-    font-size: 72pt;
-    font-weight: bold;
-    font-family: 'Old English Five', sans-serif;
-    height: var(--header-height);
-/*     padding-top: 10px; */
-    position: absolute;
-    text-align: center;
-    color: black;  
-    width: 100%;
+body {
+  color: var(--palette-base5);
+  background-color: #946a00;
+  background-image: url("assets/wood-pattern.png");
+  font-family: "Fira Sans", sans-serif;
+  font-size: 16pt;
+  height: 100%;
+  margin: 0;
+  position: absolute;
+  width: 100%;
 }
 
-main
-{
-    /* background: var(--palette-base2); */
-    /* background-color: #946a00;
-    background-image: url("assets/wood-pattern.png"); */
-    height: calc(100% - var(--header-height));
-    position: absolute;
-    top: var(--header-height);
-    width: calc(100% );
+header {
+  font-size: 72pt;
+  font-weight: bold;
+  font-family: 'Old English Five', sans-serif;
+  height: var(--header-height);
+  position: absolute;
+  text-align: center;
+  color: black;
+  width: 100%;
+}
+
+main {
+  height: calc(100% - var(--header-height));
+  position: absolute;
+  top: var(--header-height);
+  width: calc(100%);
 }
 
 
@@ -111,7 +98,7 @@ main
 
 .btn:hover {
   transition: 1s ease-in-out;
-  background: whitesmoke; 
+  background: whitesmoke;
 }
 
 .btn span {
@@ -124,70 +111,65 @@ main
 
 
 .btn2 {
-    width: 350px;
-    height: 85px;
-    cursor: pointer;
-    background: transparent;
-    border: 10px solid black;
-    outline: none;
-    transition: 1s ease-in-out;
-    position: relative;
-    left: 7px; 
-    top:185px;
-  }
-  
-  
-  
-  .btn2:hover {
-    transition: 1s ease-in-out;
-    background: whitesmoke; 
-  }
-  
-  .btn2 span {
-    color: black;
-    font-size: 32px;
-    font-weight: 100;
-    font-family: 'Old English Five', sans-serif;
-  }
-
-  .btn3 {
-    width: 350px;
-    height: 85px;
-    cursor: pointer;
-    background: transparent;
-    border: 10px solid black;
-    outline: none;
-    transition: 1s ease-in-out;
-    position: relative;
-    top: 295px;
-    left: -350px;
-  }
-  
-  
-  
-  .btn3:hover {
-    transition: 1s ease-in-out;
-    background: whitesmoke; 
-  }
-  
-  .btn3 span {
-    color: black;
-    font-size: 32px;
-    font-weight: 100;
-    font-family: 'Old English Five', sans-serif;
-  }
-
-a { 
-    text-decoration: none; 
-    color: black; 
-   }
-
-a:visited { 
-    text-decoration: none; 
-    color: black; 
-   }
+  width: 15%px;
+  height: 85px;
+  cursor: pointer;
+  background: transparent;
+  border: 10px solid black;
+  outline: none;
+  transition: 1s ease-in-out;
+  position: relative;
+  left: 7px;
+  top: 185px;
+}
 
 
 
+.btn2:hover {
+  transition: 1s ease-in-out;
+  background: whitesmoke;
+}
+
+.btn2 span {
+  color: black;
+  font-size: 32px;
+  font-weight: 100;
+  font-family: 'Old English Five', sans-serif;
+}
+
+.btn3 {
+  width: 15%;
+  height: 85px;
+  cursor: pointer;
+  background: transparent;
+  border: 10px solid black;
+  outline: none;
+  transition: 1s ease-in-out;
+  position: relative;
+  top: 295px;
+  left: -240px;
+}
 
 
+
+.btn3:hover {
+  transition: 1s ease-in-out;
+  background: whitesmoke;
+}
+
+.btn3 span {
+  color: black;
+  font-size: 32px;
+  font-weight: 100;
+  font-family: 'Old English Five', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:visited {
+  text-decoration: none;
+  color: black;
+}
