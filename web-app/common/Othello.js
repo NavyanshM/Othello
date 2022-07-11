@@ -225,13 +225,13 @@ Othello.legal_moves_available = function(player, legal_moves_board){
     return available_moves;
 };
 
+
 /**
- *Function which returns the score for a player
+ *Function which returns the other player
  * @memberof Othello
  * @function
- * @param {number} no_legal_move_counter Player, either 1 (Black) or 2 (White)
- * @param {number[][]} board The current state of the game board
- * @returns {number} 1 if the current player is 2; 2 if the current player is 1
+ * @param {number} player Player, either 1 (Black) or 2 (White)
+ * @returns {number} The number of elements, which are equal to player, in the current board
  */
 Othello.other_player = function(player){
     if (player === 1){
@@ -242,11 +242,12 @@ Othello.other_player = function(player){
 };
 
 /**
- *Function which returns the other player
+ *Function which returns the score for a player
  * @memberof Othello
  * @function
  * @param {number} player Player, either 1 (Black) or 2 (White)
- * @returns {number} The number of elements, which are equal to player, in the current board
+ * @param {number[][]} board The current state of the game board
+ * @returns {number} 1 if the current player is 2; 2 if the current player is 1
  */
 Othello.score = function(player, board){
     let score = 0;

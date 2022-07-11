@@ -27,7 +27,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Othello.html">Othello</a><ul class='methods'><li data-type='method'><a href="Othello.html#.adjacent_support">adjacent_support</a></li><li data-type='method'><a href="Othello.html#.check_line">check_line</a></li><li data-type='method'><a href="Othello.html#.empty_board">empty_board</a></li><li data-type='method'><a href="Othello.html#.find_valid_moves">find_valid_moves</a></li><li data-type='method'><a href="Othello.html#.game_over">game_over</a></li><li data-type='method'><a href="Othello.html#.is_cell_empty">is_cell_empty</a></li><li data-type='method'><a href="Othello.html#.legal_moves_available">legal_moves_available</a></li><li data-type='method'><a href="Othello.html#.other_player">other_player</a></li><li data-type='method'><a href="Othello.html#.place_token">place_token</a></li><li data-type='method'><a href="Othello.html#.random_legal_move">random_legal_move</a></li><li data-type='method'><a href="Othello.html#.score">score</a></li><li data-type='method'><a href="Othello.html#.setup_board">setup_board</a></li><li data-type='method'><a href="Othello.html#.winner">winner</a></li></ul></li><li><a href="Othello.test.html">test</a><ul class='methods'><li data-type='method'><a href="Othello.test.html#.throw_if_invalid">throw_if_invalid</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Othello.html">Othello</a><ul class='methods'><li data-type='method'><a href="Othello.html#.adjacent_support">adjacent_support</a></li><li data-type='method'><a href="Othello.html#.check_line">check_line</a></li><li data-type='method'><a href="Othello.html#.empty_board">empty_board</a></li><li data-type='method'><a href="Othello.html#.find_valid_moves">find_valid_moves</a></li><li data-type='method'><a href="Othello.html#.game_over">game_over</a></li><li data-type='method'><a href="Othello.html#.is_cell_empty">is_cell_empty</a></li><li data-type='method'><a href="Othello.html#.legal_moves_available">legal_moves_available</a></li><li data-type='method'><a href="Othello.html#.other_player">other_player</a></li><li data-type='method'><a href="Othello.html#.place_token">place_token</a></li><li data-type='method'><a href="Othello.html#.random_legal_move">random_legal_move</a></li><li data-type='method'><a href="Othello.html#.score">score</a></li><li data-type='method'><a href="Othello.html#.setup_board">setup_board</a></li><li data-type='method'><a href="Othello.html#.to_string">to_string</a></li><li data-type='method'><a href="Othello.html#.to_string_with_tokens">to_string_with_tokens</a></li><li data-type='method'><a href="Othello.html#.winner">winner</a></li></ul></li><li><a href="Othello.test.html">test</a><ul class='methods'><li data-type='method'><a href="Othello.test.html#.throw_if_invalid">throw_if_invalid</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -113,7 +113,7 @@
 
 
             
-                <div class="description usertext"><p>Othello.js defines the gameplay, rules and conditions for the game Othello. This game module can be implemented with a HTML and CSS web-app interface</p></div>
+                <div class="description usertext"><p>Othello.test is a set of tests using the moch framework, to test various states, conditions and functions of the Othello gameboard and API</p></div>
             
 
             
@@ -155,7 +155,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tests_Othello.test.js.html">tests/Othello.test.js</a>, <a href="tests_Othello.test.js.html#line41">line 41</a>
+        <a href="tests_Othello.test.js.html">tests/Othello.test.js</a>, <a href="tests_Othello.test.js.html#line42">line 42</a>
     </li></ul></dd>
     
 
@@ -195,13 +195,14 @@
 
 
 <div class="description usertext">
-    <p>Returns if the board is in a valid state.
+    <p>Returns if the board is in a valid state
 A board is valid if all the following are true:</p>
 <ul>
-<li>The board is a rectangular 2d array containing only 0, 1, or 2 as elements.</li>
-<li>Player 1 has the same number of tokens as Player 2 or has exactly one more.</li>
-<li>There are no empty slots in columns below filled ones.</li>
-<li>At most one player has a winning configuration.</li>
+<li>the board is a 2d array</li>
+<li>there are 64 elemnts in the board</li>
+<li>there are 8 columns and 8 rows</li>
+<li>all elements' values are either a 0, 1 or 2</li>
+<li><em>this test has been adapted from Freddie Page's example code</em></li>
 </ul>
 </div>
 
@@ -246,7 +247,7 @@ A board is valid if all the following are true:</p>
             <td class="type">
             
                 
-<span class="param-type">Board</span>
+<span class="param-type">board</span>
 
 
             
@@ -256,7 +257,7 @@ A board is valid if all the following are true:</p>
 
             
 
-            <td class="description last"><p>The board to test.</p></td>
+            <td class="description last"><p>The board to test</p></td>
         </tr>
 
     
@@ -282,7 +283,7 @@ A board is valid if all the following are true:</p>
 
     <div class="param-desc usertext">
     
-        <p>if the board fails any of the above conditions.</p>
+        <p>if the board fails any of the above conditions</p>
     
     </div>
 
@@ -313,7 +314,7 @@ A board is valid if all the following are true:</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Mon Jul 11 2022 20:59:04 GMT+0800 (Singapore Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Mon Jul 11 2022 23:25:14 GMT+0800 (Singapore Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
