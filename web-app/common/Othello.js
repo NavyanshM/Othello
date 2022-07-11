@@ -21,6 +21,31 @@ Othello.token_strings = Object.freeze({
 });
 
 /**
+ * Returns a {@link Othello.to_string} like function, mapping tokens to given string representations
+ * @memberof Othello
+ * @function
+ * @param {string[]} token_strings
+ * @returns {function} The string representation of the board
+ */
+ Othello.to_string_with_tokens = (token_strings) => (board) => R.pipe(
+    R.transpose,
+    R.reverse,
+    replace_tokens_on_board(token_strings),
+    R.map(R.join(" ")),
+    R.join("\n")
+)(board);
+
+/**
+ * Returns a string representation of the board
+ * @memberof Othello
+ * @function
+ * @param {board} board The board to be represented
+ * @returns {string} The string representation of the board
+ */
+ Othello.to_string = Othello.to_string_with_tokens(["0", "1", "2"]);
+
+
+/**
  * Create a new empty board, represented as an array of arrays (2D array)
  * @memberof Othello
  * @function

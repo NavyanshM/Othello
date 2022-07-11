@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>tests/Othello.test.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Othello.html">Othello</a><ul class='methods'><li data-type='method'><a href="Othello.html#.adjacent_support">adjacent_support</a></li><li data-type='method'><a href="Othello.html#.check_line">check_line</a></li><li data-type='method'><a href="Othello.html#.empty_board">empty_board</a></li><li data-type='method'><a href="Othello.html#.find_valid_moves">find_valid_moves</a></li><li data-type='method'><a href="Othello.html#.game_over">game_over</a></li><li data-type='method'><a href="Othello.html#.is_cell_empty">is_cell_empty</a></li><li data-type='method'><a href="Othello.html#.legal_moves_available">legal_moves_available</a></li><li data-type='method'><a href="Othello.html#.other_player">other_player</a></li><li data-type='method'><a href="Othello.html#.place_token">place_token</a></li><li data-type='method'><a href="Othello.html#.random_legal_move">random_legal_move</a></li><li data-type='method'><a href="Othello.html#.score">score</a></li><li data-type='method'><a href="Othello.html#.setup_board">setup_board</a></li><li data-type='method'><a href="Othello.html#.winner">winner</a></li></ul></li><li><a href="Othello.test.html">test</a><ul class='methods'><li data-type='method'><a href="Othello.test.html#.throw_if_invalid">throw_if_invalid</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">tests/Othello.test.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @namespace Othello.test
+   @description Othello.js defines the gameplay, rules and conditions for the game Othello. This game module can be implemented with a HTML and CSS web-app interface
+ * @author Navyansh Malhotra
+ * @version v1.0
+ */
+
+import Othello from "../common/Othello.js";
+import R from "../common/ramda.js";
+
+const DISPLAY_MODE = "to_string";
+
+const display_functions = {
+    "json": JSON.stringify,
+    "to_string": Othello.to_string_with_tokens(Othello.token_strings.disks)
+};
+
+const display_board = function (board) {
+    try {
+        return "\n" + display_functions[DISPLAY_MODE](board);
+    } catch (ignore) {
+        return "\n" + JSON.stringify(board);
+    }
+};
+
+/**
+ * Returns if the board is in a valid state.
+ * A board is valid if all the following are true:
+ * - The board is a rectangular 2d array containing only 0, 1, or 2 as elements.
+ * - Player 1 has the same number of tokens as Player 2 or has exactly one more.
+ * - There are no empty slots in columns below filled ones.
+ * - At most one player has a winning configuration.
+ * @memberof Othello.test
+ * @function
+ * @param {Board} board The board to test.
+ * @throws if the board fails any of the above conditions.
+ */
+
+
+
+const throw_if_invalid = function () {
+};
+
+
+const other_columns_dont_differ = function (column, initial_board, final_board) {
+    // Then
+    const filtered_initial_columns = initial_board.filter(
+        (ignore, col_index) => col_index !== column
+    );
+    const filtered_final_columns = final_board.filter(
+        (ignore, col_index) => col_index !== column
+    );
+    filtered_final_columns.forEach(function (final_column, col_index) {
+        const initial_column = filtered_initial_columns[col_index];
+        if (!R.equals(initial_column, final_column)) {
+            throw new Error(
+                "Columns that were not plied into are not equal\n" +
+                `player: ${player}, column: ${column}` +
+                "initial: \n" + Connect4.to_string(initial_board) +
+                "\n\nfinal: \n" + Connect4.to_string(final_board)
+            );
+        }
+    });
+};
+
+describe("Making a ply", function () {
+
+    it(`Given a non-ended board;
+When a ply is made by a player in a column;
+Then the resultant board is valid;
+Only that column differs from the original;
+The colulmn's last non-empty slot is the player's token;
+The original tokens are in the same order in the final state;
+`, function () {
+        const initial_boards = [
+            {
+                "board": Connect4.empty_board(),
+                "column": 3
+            },
+            {
+                "board": [
+                    [0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0],
+                    [1, 2, 0, 0, 0, 0],
+                    [1, 2, 0, 0, 0, 0],
+                    [1, 2, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0]
+                ],
+                "column": 4
+            }
+        ];
+
+        initial_boards.forEach(function (initial_board_state) {
+            const initial_board = initial_board_state.board;
+            const column = initial_board_state.column;
+            const player = Connect4.player_to_ply(initial_board);
+
+            // When
+            const final_board = Connect4.ply(player, column, initial_board);
+
+            //Then
+            throw_if_invalid(final_board);
+            other_columns_dont_differ(column, initial_board, final_board);
+        });
+    });
+
+});
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Mon Jul 11 2022 20:59:04 GMT+0800 (Singapore Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

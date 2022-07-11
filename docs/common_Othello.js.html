@@ -27,7 +27,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Othello.html">Othello</a></li><li><a href="Stats4.html">Stats4</a><ul class='methods'><li data-type='method'><a href="Stats4.html#.get_statistics">get_statistics</a></li><li data-type='method'><a href="Stats4.html#.record_game">record_game</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Othello.html">Othello</a><ul class='methods'><li data-type='method'><a href="Othello.html#.adjacent_support">adjacent_support</a></li><li data-type='method'><a href="Othello.html#.check_line">check_line</a></li><li data-type='method'><a href="Othello.html#.empty_board">empty_board</a></li><li data-type='method'><a href="Othello.html#.find_valid_moves">find_valid_moves</a></li><li data-type='method'><a href="Othello.html#.game_over">game_over</a></li><li data-type='method'><a href="Othello.html#.is_cell_empty">is_cell_empty</a></li><li data-type='method'><a href="Othello.html#.legal_moves_available">legal_moves_available</a></li><li data-type='method'><a href="Othello.html#.other_player">other_player</a></li><li data-type='method'><a href="Othello.html#.place_token">place_token</a></li><li data-type='method'><a href="Othello.html#.random_legal_move">random_legal_move</a></li><li data-type='method'><a href="Othello.html#.score">score</a></li><li data-type='method'><a href="Othello.html#.setup_board">setup_board</a></li><li data-type='method'><a href="Othello.html#.winner">winner</a></li></ul></li><li><a href="Othello.test.html">test</a><ul class='methods'><li data-type='method'><a href="Othello.test.html#.throw_if_invalid">throw_if_invalid</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -42,13 +42,16 @@
     
     <section>
         <article>
-<<<<<<< HEAD
             <pre class="prettyprint source linenums"><code>/**
  * @namespace Othello
- * @description Othello.js defines the gameplay, rules and conditions for the game Othello. This game module can be implemented with a HTML and CSS web-app interface. 
+   @description Othello.js defines the gameplay, rules and conditions for the game Othello. This game module can be implemented with a HTML and CSS web-app interface
  * @author Navyansh Malhotra
  * @version v1.0
  */
+
+/*jslint es6 */
+/*jslint browser:true */
+/*global window */
 
 import R from "../common/ramda.js";
 
@@ -61,65 +64,31 @@ Othello.token_strings = Object.freeze({
     "disks": ["", "⚫", "⚪"]
 });
 
+/**
+ * Create a new empty board, represented as an array of arrays (2D array)
+ * @memberof Othello
+ * @function
+ * @param {number} [width] The width of the new board
+ * @param {number} [height] The height of the new board
+ * @returns {board} An empty board for starting a game or to hold legal moves
+ */
 Othello.empty_board = function (width, height) {
+    "use strict";
     return R.repeat(R.repeat(0, height), width);
 };
 
-
-//https://www.youtube.com/watch?v=XseyfdrHmoY&amp;list=PLA7VQFdAJ2vfytZFoskFIBYLlNuCUGi0N&amp;index=7&amp;ab_channel=Mr.Soderquist
-//https://www.youtube.com/watch?v=_7Jz4MbAjCE&amp;ab_channel=djp3
-
-
-Othello.setup_board = function(board){
-    board = Othello.place_token(1, 3, 4, board);
-    board = Othello.place_token(1, 4, 3, board);
-    board = Othello.place_token(2, 3, 3, board);
-    board = Othello.place_token(2, 4, 4, board);
-/*     board = Othello.place_token(1, 4, 5, board);
-    board = Othello.place_token(2, 4, 6, board);
-    board = Othello.place_token(1, 2, 3, board);
-    board = Othello.place_token(1, 2, 2, board); 
-    board = Othello.place_token(2, 3, 6, board);   
-    board = Othello.place_token(2, 4, 6, board);
-    board = Othello.place_token(2, 6, 4, board);
-    board = Othello.place_token(1, 2, 3, board); 
-    board = Othello.place_token(1, 2, 6, board);     
-    board = Othello.place_token(2, 1, 6, board);
-    board = Othello.place_token(2, 2, 7, board);
-    board = Othello.place_token(2, 6, 6, board); 
-    board = Othello.place_token(2, 5, 4, board);  
-    board = Othello.place_token(2, 6, 6, board);  
-    board = Othello.place_token(1, 6, 5, board); 
-    board = Othello.place_token(1, 6, 4, board); 
-    board = Othello.place_token(1, 6, 3, board); 
-    board = Othello.place_token(1, 3, 5, board);     
-    board = Othello.place_token(2, 7, 4, board);
-    board = Othello.place_token(1, 4, 2, board);
-    board = Othello.place_token(2, 1, 6, board); 
-    board = Othello.place_token(2, 5, 6, board);    */
-    return board;
-};
-
-//if (board[3][4] === 1){
-//board = Othello.place_token(2, 0, 0, board);
-//};
-
-/* Othello.player_to_ply = function (board) {
-    const flattened_board = R.flatten(board);
-    return (
-        R.count(
-            R.equals(1),
-            flattened_board
-        ) === R.count(
-            R.equals(2),
-            flattened_board
-        )
-            ? 2
-            : 1
-    );
-}; */
-
+/**
+ * Places a token in a given position
+ * @memberof Othello
+ * @function
+ * @param {number} player The new value to be pushed into the array
+ * @param {number} column_index Array column to be updated
+ * @param {number} row_index Array row to be updatd
+ * @param {number[][]} board Original state of the board, to be updated
+ * @returns {board} Returns the new state of the board.
+ */
 Othello.place_token = function (player, column_index, row_index, board) {
+    "use strict";
     return R.update(
         column_index,
         R.update(row_index, player, board[column_index]),
@@ -127,134 +96,117 @@ Othello.place_token = function (player, column_index, row_index, board) {
     );
 };
 
-
-Othello.is_ended= function(board) {
-    return false;
+/**
+ * Places the initial 4 tokens as per the rules of Othello
+ * @memberof Othello
+ * @function
+ * @param {number[][]} board The empty board
+ * @returns {board} An updated board with 4 tokens placed; 2 white and 2 black.
+ */
+ Othello.setup_board = function(board){
+    "use strict";
+    board = Othello.place_token(1, 3, 4, board);
+    board = Othello.place_token(1, 4, 3, board);
+    board = Othello.place_token(2, 3, 3, board);
+    board = Othello.place_token(2, 4, 4, board);
+    return board;
 };
 
-Othello.size = function (board) {
-    return [board.length, board[0].length];
-};
-
+/**
+ * Checks if a cell is empty
+ * @memberof Othello
+ * @function
+ * @param {number} column_index The column to be checked
+ * @param {number[][]} row_index The row to be checked
+ * @returns {(true | false)} True if index is empty (i.e = 0) else False
+ */
 Othello.is_cell_empty = function (column_index, row_index, board) {
+    "use strict";
     if (board[column_index][width - 1 - row_index] === 0) {
         return true;
     }
     else{
         return false;
-    };
+    }
 };
 
-
-/* Othello.is_valid_move = function (player, column_index, row_index, board) {
-    if ((Othello.north(player, column_index, row_index, board) || Othello.south(player, column_index, row_index, board)) &amp;&amp; (Othello.is_cell_empty(column_index, row_index, board))) {
-        return true; 
-    } else { 
-        return false; 
-    };
-};
+/**
+ * Recursive function to check if a token bounds a series of the other player's tokens, with it's own colour on the other side
+ * @memberof Othello
+ * @function
+ * @param {number} player Player which is placing the new token, either 1 (Black) or 2 (White)
+ * @param {number} delta_column Defines the column direction to be checked
+ * @param {number} delta_row Defines the row direction to be checked
+ * @param {number} column_index Defines the column where the new token is being placed
+ * @param {number} row_index Defines the row where the new token is being placed
+ * @param {number[][]} board The original state of the board, before the new token has been placed
+ * @returns {(true | false)} True if the next element (as per delta_column and delta_row) is the same value as player
  */
-//checks only one on top
-/* Othello.north = function (player, column_index, row_index, board) { 
-    if ((height - row_index &lt; height) &amp;&amp; (board[column_index][height - row_index ] === Othello.other_player(player))){
-        return true;
-    };
-}; 
- */
-
-/* Othello.north = function (player, column_index, row_index, board) { 
-    //slice array when checking from the ladt emptyu to the placed postion 
-    
-    if ((height - row_index &lt; height) &amp;&amp; (Othello.column_as_array(board, column_index).includes(player, height - row_index + 1)) &amp;&amp; (board[column_index][height - row_index ] === Othello.other_player(player))){
-        return true;
-    } else {
-        return false;
-    }; 
-};  */
-
-/* Othello.south = function (player, column_index, row_index, board) { 
-/*     if (height - row_index > 1){
-        return true; 
-    } */
-    
-    //if ((height - row_index > 1) &amp;&amp; (board[column_index][height - row_index + 1] === Othello.other_player(player))){
-/*     if ((height - row_index > 1) &amp;&amp; (board[column_index][row_index - 1] === player)){
-        return true;
-    } else {
-        return false; 
-    };  */
-    //return false; 
-//}; 
-
-/* Othello.east = function (player, column_index, row_index, board) { 
-    return false;
-};  */
-
-/* Othello.west = function (player, column_index, row_index, board) { 
-    return false;
-}; 
- */
-//remove Othello. from local functions not called by main 
-
-
 Othello.check_line = function (player, delta_column, delta_row, column_index, row_index, board){
+    "use strict";
     if (board[column_index][row_index] === player){
-        return true; 
-    }; 
-
-
+        return true;
+    }
     if (board[column_index][row_index] === 0){
-        return false; 
-    }; 
-
-    
+        return false;
+    }
     if ((row_index + delta_row &lt; 0) || (row_index + delta_row > height - 1)){
-        return false; 
-    };
-
+        return false;
+    }
     if ((column_index + delta_column &lt; 0) || (column_index + delta_column > width - 1)){
-        return false; 
-    };
-    
-
-    return (Othello.check_line(player, delta_column, delta_row, column_index + delta_column, row_index + delta_row, board));  
-    //return false;
+        return false;
+    }
+    return (Othello.check_line(player, delta_column, delta_row, column_index + delta_column, row_index + delta_row, board));
 };
 
+/**
+ * Function which provides iterative element indices to the check_line function
+ * @memberof Othello
+ * @function
+ * @param {number} player Player which is placing the new token, either 1 (Black) or 2 (White)
+ * @param {number} delta_column Defines the column direction to be checked
+ * @param {number} delta_row Defines the row direction to be checked
+ * @param {number} column_index Defines the column where the new token is being placed
+ * @param {number} row_index Defines the row where the new token is being placed
+ * @param {number[][]} board The original state of the board, before the new token has been placed
+ * @returns {(true | false)} Boolean value determined by the return value of the check_line function
+ */
 Othello.adjacent_support = function(player, delta_column, delta_row, column_index, row_index, board){
-    //make let const? 
+    "use strict";
     let other_player = Othello.other_player(player);
-
     if ((row_index + delta_row &lt; 0) || (row_index + delta_row > height - 1)){
-        return false; 
-    };
-
+        return false;
+    }
     if ((column_index + delta_column &lt; 0) || (column_index + delta_column > width - 1)){
-        return false; 
-    };
-
+        return false;
+    }
     if (board[column_index+delta_column][row_index+delta_row] !== other_player){
-        return false; 
-    };
-
+        return false;
+    }
     if ((row_index + delta_row + delta_row &lt; 0) || (row_index + delta_row + delta_row > height - 1)){
-        return false; 
-    };
-
+        return false;
+    }
     if ((column_index + delta_column + delta_column &lt; 0) || (column_index + delta_column + delta_column > width - 1)){
-        return false; 
-    };
+        return false;
+    }
+    return Othello.check_line(player, delta_column, delta_row, column_index + delta_column + delta_column, row_index + delta_row + delta_row, board);
+};
 
-    return Othello.check_line(player, delta_column, delta_row, column_index + delta_column + delta_column, row_index + delta_row + delta_row, board);  
-    //return true; 
-}; 
-
+/**
+ * Function which updates the legal move board with all the legal moves available, for the player, based on the current state of the board
+ * @memberof Othello
+ * @function
+ * @param {number} player Player, either 1 (Black) or 2 (White)
+ * @param {number[][]} legal_moves_board The current legal moves board
+ * @param {number[][]} board The current state of the game board
+ * @returns {number[][]} The updated legal moves board
+ */
 Othello.find_valid_moves = function(player, legal_moves_board, board){
+    "use strict";
+    legal_moves_board = Othello.empty_board(width, height);
     for (let row = 0; row &lt; height; row++){
         for (let column = 0; column &lt; width; column++){
-            //7 - ROW 
             if (Othello.is_cell_empty(column, 7 - row, board)){
-                //legal_moves_board = Othello.place_token(player, column, row, legal_moves_board);
                 let north = Othello.adjacent_support(player, 0, -1, column, row, board);
                 let south = Othello.adjacent_support(player, 0, 1, column, row, board);
                 let east = Othello.adjacent_support(player, 1, 0, column, row, board);
@@ -262,194 +214,44 @@ Othello.find_valid_moves = function(player, legal_moves_board, board){
                 let north_west = Othello.adjacent_support(player, -1, -1, column, row, board);
                 let north_east = Othello.adjacent_support(player, 1, -1, column, row, board);
                 let south_west = Othello.adjacent_support(player, -1, 1, column, row, board);
-                let south_east = Othello.adjacent_support(player, 1, 1, column, row, board);  
-
+                let south_east = Othello.adjacent_support(player, 1, 1, column, row, board);
                if (north || south || east || west || north_east || north_west || south_east || south_west){
                     legal_moves_board = Othello.place_token(player, column, row, legal_moves_board);
-                };  
-
-                /*if (north){
-                    legal_moves_board = Othello.place_token(player, column, row, legal_moves_board);
-                };*/
-
-                //legal_moves_board[column_index][row_index] = 1; 
+                };
             };
         };
-    };  
+    };
+    return legal_moves_board;
+};
 
-    return legal_moves_board; 
-}; 
-
-/*
- /*   for (let column = 0; column &lt; 8; column++){
-        for (let row = 0; row &lt; 8; row++){
-            if (Othello.is_cell_empty(column, row, board)){
-                //north = Othello.adjacent_support(player, 0, -1, column, row, board);
-                if (true){
-                    legal_moves_board = Othello.place_token(player, column, 7 - row, legal_moves_board); 
-                }
+/**
+ * Function which updates the legal move board with all the legal moves available, for the player, based on the current state of the board
+ * @memberof Othello
+ * @function
+ * @param {number} player Player, either 1 (Black) or 2 (White)
+ * @param {number[][]} legal_moves_board The current legal moves board
+ * @returns {(true | false)} True if any element in the legal moves board is equal to the player
+ */
+Othello.legal_moves_available = function(player, legal_moves_board){
+    let available_moves = false;
+    for (let row = 0; row &lt; height; row++){
+        for (let column = 0; column &lt; width; column++){
+            if (legal_moves_board[column][row] === player){
+                available_moves = true;
             }
         }
     }
-
-    //legal_moves_board = Othello.place_token(1, 0, 0, legal_moves_board); 
-    //legal_moves_board = Othello.place_token(1, 0, 0, legal_moves_board);   
-    //return legal_moves_board;
- }; */
-
- /*
-Othello.flip_line = function(player, delta_column, delta_row, column_index, row_index, board){
-    if (board[7][4] ===  2){
-        board = Othello.place_token(2, 6, 4, board);
-        return [board, true]; 
-    }; 
-
-    if ((row_index + delta_row &lt; 0) || (row_index + delta_row > height - 1)){
-        return [board, false]; 
-    };
-
-    if ((column_index + delta_column &lt; 0) || (column_index + delta_column > width - 1)){
-        return [board, false]; 
-    };
-
-    if (board[column_index+delta_column][row_index+delta_row] === 0){
-        return [board, false]; 
-    }; 
-
-    if (board[column_index + delta_column + delta_column][row_index + delta_row + delta_row] === player){
-        board = Othello.place_token(player, column_index + delta_column, row_index + delta_row, board);
-        return [board, true]; 
-
-    } 
-
-    //TOKEN SPACE TOKEN HAS A PROBLEM IT PLACES 
-
-    if (board[column_index + delta_column + delta_column][row_index + delta_row + delta_row] === player){
-        board = Othello.place_token(player, column_index + delta_column , row_index + delta_row, board);
-        return [board, true]; 
-    };  
-
-    if (board[column_index + delta_column][row_index + delta_row] === player){
-        //board = Othello.place_token(1, 7, 7, board);
-        //board = Othello.place_token(player, column_index + delta_column, row_index + delta_row, board);
-        //board = Othello.place_token(player, column_index + delta_column, row_index + delta_row, board);
-
-        return [board, true]; 
-        
-    } else {
-        let x = Othello.flip_line(player, delta_column, delta_row, column_index + delta_column, row_index + delta_row, board)
-
-        if(x[1]){
-            board = x[0]; 
-            board = Othello.place_token(player, column_index + delta_column, row_index + delta_row, board);
-            //board = Othello.place_token(player, 6 + delta_column, 6 + delta_row, board);
-            return [board, true];
-        } else {
-            return [board, false];
-        }
-    } 
- }; 
-
- Othello.flip_tokens = function(player, column_index, row_index, board){
-    board = Othello.flip_line(player, 0, 1, column_index, row_index, board)[0];
-    return board; 
- };
-/* /////////////////////////
-Othello.flip_line = function(player, delta_column, delta_row, column_index,row_index, board){
-    if ((row_index + delta_row &lt; 0) || (row_index + delta_row > height - 1)){
-        return false; 
-    };
-
-    if ((column_index + delta_column &lt; 0) || (column_index + delta_column > width - 1)){
-        return false; 
-    };
-
-    if (board[column_index+delta_column][row_index+delta_row] === 0){
-        return false; 
-    };
-
-
-    if (board[column_index + delta_column][row_index + delta_row] === player){
-        return true; 
-    } else{
-        if(Othello.flip_line(player, delta_column, delta_row, column_index + delta_column, row_index + delta_row, board)){
-            Othello.place_token(player, column_index + delta_column, row_index + delta_row, board);
-            return true; 
-        }; 
-    };
+    return available_moves;
 };
-/////////////////////////////// */
-/*     if (board[column_index+delta_column][row_index+delta_row] === player){
-        board = Othello.place_token(player, column_index+delta_column, row_index+delta_row, board);
-        return board; 
-    } else {
-        //board = Othello.place_token(player, column_index+delta_column, row_index+delta_row, board);
-        return board; 
-        //board = Othello.place_token(1, 0,0,board); 
-        //return board;
-        //if (board[column_index+delta_column][row_index+delta_row] === player){
-            //board = Othello.place_token(player, column_index+delta_column, row_index+delta_row, board);
-            //board = Othello.place_token(1, 0,0,board); 
-            //board = Othello.flip_line(player,delta_column,delta_row, column_index, row_index, board);
-            //return board;
-        //} else {
-            //return board; 
-        //};
-    }; */
 
-/*  Othello.flip_tokens = function(player, column_index, row_index, board){
-    let temp_board = board;
-    temp_board = Othello.flip_line(player, 0, -1, column_index, row_index, temp_board);
-    temp_board = Othello.flip_line(player, 0, 1, column_index, row_index, temp_board);
-    temp_board = Othello.flip_line(player, 1, 0, column_index, row_index, temp_board);
-    temp_board = Othello.flip_line(player, -1, 0, column_index, row_index, temp_board);
-    temp_board = Othello.flip_line(player, -1, -1, column_index, row_index, temp_board);
-    temp_board = Othello.flip_line(player, 1, -1, column_index, row_index, temp_board);
-    temp_board = Othello.flip_line(player, -1, -1, column_index, row_index, temp_board);
-    temp_board = Othello.flip_line(player, 1, 1, column_index, row_index, temp_board);  
-    return temp_board; 
-};
+/**
+ *Function which returns the score for a player
+ * @memberof Othello
+ * @function
+ * @param {number} no_legal_move_counter Player, either 1 (Black) or 2 (White)
+ * @param {number[][]} board The current state of the game board
+ * @returns {number} 1 if the current player is 2; 2 if the current player is 1
  */
-/* 
-Othello.find_valid_moves = function(player, legal_moves_board, board){
-    const column = 0; 
-    const row = 0; 
-    
-    const north = true;
-    const south = true;
-    const east = true;
-    const west = true;
-    const north_west = true;
-    const north_east = true;
-    const south_west = true;
-    const south_east = true;
-    if (north || south || east || west || north_east || north_west || south_east || south_west){
-        legal_moves_board = Othello.place_token(player, column, row, legal_moves_board);
-    };
-                //legal_moves_board[column_index][row_index] = 1; 
-
-    return legal_moves_board;
-};  */
-
-
-Othello.column_as_array = function (board, column_index) {
-    const column = board[column_index];
-    /* for (let i = 0; i &lt; height; i++) {
-        column.push(board[column_index][i]);
-    }; */
-    //column = R.reverse(column); 
-    return column;
-};
-
-Othello.row_as_array = function (board, row_index) {
-    const row = R.transpose(board)[row_index];
-    /* for (let i = 0; i &lt; height; i++) {
-        column.push(board[column_index][i]);
-    }; */
-    //column = R.reverse(column); 
-    return row;
-};
-
 Othello.other_player = function(player){
     if (player === 1){
         return 2;
@@ -458,448 +260,79 @@ Othello.other_player = function(player){
     };
 };
 
+/**
+ *Function which returns the other player
+ * @memberof Othello
+ * @function
+ * @param {number} player Player, either 1 (Black) or 2 (White)
+ * @returns {number} The number of elements, which are equal to player, in the current board
+ */
 Othello.score = function(player, board){
-    let score = 0; 
+    let score = 0;
     for (let i = 0; i&lt; 8; i++){
         for (let j = 0; j &lt; 8; j++){
             if (board[i][j] === player){
-                score = score + 1; 
+                score = score + 1;
             }
         };
-    }; 
-    return score; 
+    };
+    return score;
 };
 
-=======
-            <pre class="prettyprint source linenums"><code>/**
- * @namespace Othello
- * @description Othello.js defines the gameplay, rules and conditions for the game Othello. This game module can be implemented with a HTML and CSS web-app interface. 
- * @author Navyansh Malhotra
- * @version v1.0
+/**
+ *Checks game over conditions
+ * @memberof Othello
+ * @function
+ * @param {number} no_legal_move_counter Counter which hold how many consecutive plays there have been with no legal moves
+ * @param {number[][]} board The current state of the board
+ * @returns {(true|false)} Returns true if the sum of the scores is 64, there have been two consecutive plays with no legal moves or either player has no tokens on the board
  */
-
-import R from "../common/ramda.js";
-
-const Othello = Object.create(null);
-const width = 8;
-const height = 8;
-
-Othello.token_strings = Object.freeze({
-    "default": ["0", "1", "2"],
-    "disks": ["", "⚫", "⚪"]
-});
-
-Othello.empty_board = function (width, height) {
-    return R.repeat(R.repeat(0, height), width);
-};
-
-
-//https://www.youtube.com/watch?v=XseyfdrHmoY&amp;list=PLA7VQFdAJ2vfytZFoskFIBYLlNuCUGi0N&amp;index=7&amp;ab_channel=Mr.Soderquist
-//https://www.youtube.com/watch?v=_7Jz4MbAjCE&amp;ab_channel=djp3
-
-
-Othello.setup_board = function(board){
-    board = Othello.place_token(1, 3, 4, board);
-    board = Othello.place_token(1, 4, 3, board);
-    board = Othello.place_token(2, 3, 3, board);
-    board = Othello.place_token(2, 4, 4, board);
-/*     board = Othello.place_token(1, 4, 5, board);
-    board = Othello.place_token(2, 4, 6, board);
-    board = Othello.place_token(1, 2, 3, board);
-    board = Othello.place_token(1, 2, 2, board); 
-    board = Othello.place_token(2, 3, 6, board);   
-    board = Othello.place_token(2, 4, 6, board);
-    board = Othello.place_token(2, 6, 4, board);
-    board = Othello.place_token(1, 2, 3, board); 
-    board = Othello.place_token(1, 2, 6, board);     
-    board = Othello.place_token(2, 1, 6, board);
-    board = Othello.place_token(2, 2, 7, board);
-    board = Othello.place_token(2, 6, 6, board); 
-    board = Othello.place_token(2, 5, 4, board);  
-    board = Othello.place_token(2, 6, 6, board);  
-    board = Othello.place_token(1, 6, 5, board); 
-    board = Othello.place_token(1, 6, 4, board); 
-    board = Othello.place_token(1, 6, 3, board); 
-    board = Othello.place_token(1, 3, 5, board);     
-    board = Othello.place_token(2, 7, 4, board);
-    board = Othello.place_token(1, 4, 2, board);
-    board = Othello.place_token(2, 1, 6, board); 
-    board = Othello.place_token(2, 5, 6, board);    */
-    return board;
-};
-
-//if (board[3][4] === 1){
-//board = Othello.place_token(2, 0, 0, board);
-//};
-
-/* Othello.player_to_ply = function (board) {
-    const flattened_board = R.flatten(board);
-    return (
-        R.count(
-            R.equals(1),
-            flattened_board
-        ) === R.count(
-            R.equals(2),
-            flattened_board
-        )
-            ? 2
-            : 1
-    );
-}; */
-
-Othello.place_token = function (player, column_index, row_index, board) {
-    return R.update(
-        column_index,
-        R.update(row_index, player, board[column_index]),
-        board
-    );
-};
-
-
-Othello.is_ended= function(board) {
-    return false;
-};
-
-Othello.size = function (board) {
-    return [board.length, board[0].length];
-};
-
-Othello.is_cell_empty = function (column_index, row_index, board) {
-    if (board[column_index][width - 1 - row_index] === 0) {
+Othello.game_over = function(no_legal_move_counter, board){
+    if ((Othello.score(1, board) + Othello.score(2, board) === 64) || (no_legal_move_counter === 2) || (Othello.score(1, board) === 0) || (Othello.score(2, board) === 0)){
         return true;
-    }
-    else{
+    } else {
         return false;
     };
 };
 
-
-/* Othello.is_valid_move = function (player, column_index, row_index, board) {
-    if ((Othello.north(player, column_index, row_index, board) || Othello.south(player, column_index, row_index, board)) &amp;&amp; (Othello.is_cell_empty(column_index, row_index, board))) {
-        return true; 
-    } else { 
-        return false; 
-    };
-};
+/**
+ *Determines and returns the winner
+ * @memberof Othello
+ * @function
+ * @param {number[][]} board The current state of the board
+ * @returns {text} Returns 'Black' if black's score is higher than white, returns 'Tie' if the two scores are equal, else returns 'White'
  */
-//checks only one on top
-/* Othello.north = function (player, column_index, row_index, board) { 
-    if ((height - row_index &lt; height) &amp;&amp; (board[column_index][height - row_index ] === Othello.other_player(player))){
-        return true;
-    };
-}; 
- */
-
-/* Othello.north = function (player, column_index, row_index, board) { 
-    //slice array when checking from the ladt emptyu to the placed postion 
-    
-    if ((height - row_index &lt; height) &amp;&amp; (Othello.column_as_array(board, column_index).includes(player, height - row_index + 1)) &amp;&amp; (board[column_index][height - row_index ] === Othello.other_player(player))){
-        return true;
+Othello.winner = function(board){
+    if (Othello.score(1, board) > Othello.score(2, board)){
+        return "Black";
+    } else if (Othello.score(1, board) === Othello.score(2, board)){
+        return "Tie"
     } else {
-        return false;
-    }; 
-};  */
-
-/* Othello.south = function (player, column_index, row_index, board) { 
-/*     if (height - row_index > 1){
-        return true; 
-    } */
-    
-    //if ((height - row_index > 1) &amp;&amp; (board[column_index][height - row_index + 1] === Othello.other_player(player))){
-/*     if ((height - row_index > 1) &amp;&amp; (board[column_index][row_index - 1] === player)){
-        return true;
-    } else {
-        return false; 
-    };  */
-    //return false; 
-//}; 
-
-/* Othello.east = function (player, column_index, row_index, board) { 
-    return false;
-};  */
-
-/* Othello.west = function (player, column_index, row_index, board) { 
-    return false;
-}; 
- */
-//remove Othello. from local functions not called by main 
-
-
-Othello.check_line = function (player, delta_column, delta_row, column_index, row_index, board){
-    if (board[column_index][row_index] === player){
-        return true; 
-    }; 
-
-
-    if (board[column_index][row_index] === 0){
-        return false; 
-    }; 
-
-    
-    if ((row_index + delta_row &lt; 0) || (row_index + delta_row > height - 1)){
-        return false; 
-    };
-
-    if ((column_index + delta_column &lt; 0) || (column_index + delta_column > width - 1)){
-        return false; 
-    };
-    
-
-    return (Othello.check_line(player, delta_column, delta_row, column_index + delta_column, row_index + delta_row, board));  
-    //return false;
+        return "White"
+    }
 };
 
-Othello.adjacent_support = function(player, delta_column, delta_row, column_index, row_index, board){
-    //make let const? 
-    let other_player = Othello.other_player(player);
-
-    if ((row_index + delta_row &lt; 0) || (row_index + delta_row > height - 1)){
-        return false; 
-    };
-
-    if ((column_index + delta_column &lt; 0) || (column_index + delta_column > width - 1)){
-        return false; 
-    };
-
-    if (board[column_index+delta_column][row_index+delta_row] !== other_player){
-        return false; 
-    };
-
-    if ((row_index + delta_row + delta_row &lt; 0) || (row_index + delta_row + delta_row > height - 1)){
-        return false; 
-    };
-
-    if ((column_index + delta_column + delta_column &lt; 0) || (column_index + delta_column + delta_column > width - 1)){
-        return false; 
-    };
-
-    return Othello.check_line(player, delta_column, delta_row, column_index + delta_column + delta_column, row_index + delta_row + delta_row, board);  
-    //return true; 
-}; 
-
-Othello.find_valid_moves = function(player, legal_moves_board, board){
-    for (let row = 0; row &lt; height; row++){
-        for (let column = 0; column &lt; width; column++){
-            //7 - ROW 
-            if (Othello.is_cell_empty(column, 7 - row, board)){
-                //legal_moves_board = Othello.place_token(player, column, row, legal_moves_board);
-                let north = Othello.adjacent_support(player, 0, -1, column, row, board);
-                let south = Othello.adjacent_support(player, 0, 1, column, row, board);
-                let east = Othello.adjacent_support(player, 1, 0, column, row, board);
-                let west = Othello.adjacent_support(player, -1, 0, column, row, board);
-                let north_west = Othello.adjacent_support(player, -1, -1, column, row, board);
-                let north_east = Othello.adjacent_support(player, 1, -1, column, row, board);
-                let south_west = Othello.adjacent_support(player, -1, 1, column, row, board);
-                let south_east = Othello.adjacent_support(player, 1, 1, column, row, board);  
-
-               if (north || south || east || west || north_east || north_west || south_east || south_west){
-                    legal_moves_board = Othello.place_token(player, column, row, legal_moves_board);
-                };  
-
-                /*if (north){
-                    legal_moves_board = Othello.place_token(player, column, row, legal_moves_board);
-                };*/
-
-                //legal_moves_board[column_index][row_index] = 1; 
-            };
-        };
-    };  
-
-    return legal_moves_board; 
-}; 
-
-/*
- /*   for (let column = 0; column &lt; 8; column++){
-        for (let row = 0; row &lt; 8; row++){
-            if (Othello.is_cell_empty(column, row, board)){
-                //north = Othello.adjacent_support(player, 0, -1, column, row, board);
-                if (true){
-                    legal_moves_board = Othello.place_token(player, column, 7 - row, legal_moves_board); 
-                }
+/**
+ *Returns the index for a random legal move. Used in the 1 player game mode
+ * @memberof Othello
+ * @function
+ * @param {number} player The player whose turn is being played
+ * @param {number[][]} legal_moves_board An array representing all the possible legal moves based on the current state of the game board
+ * @returns {number[]} Returns a random index from the 2D list random_legal_moves
+ */
+Othello.random_legal_move = function(player, legal_moves_board){
+    let legal_moves_array = [];
+    for (let i = 0; i &lt; 8; i++){
+        for (let j = 0; j &lt; 8; j++){
+            if (legal_moves_board[i][j] === player){
+                legal_moves_array.push([i,j])
             }
         }
     }
+    return legal_moves_array[Math.floor(Math.random() * legal_moves_array.length)];
+}
 
-    //legal_moves_board = Othello.place_token(1, 0, 0, legal_moves_board); 
-    //legal_moves_board = Othello.place_token(1, 0, 0, legal_moves_board);   
-    //return legal_moves_board;
- }; */
-
- /*
-Othello.flip_line = function(player, delta_column, delta_row, column_index, row_index, board){
-    if (board[7][4] ===  2){
-        board = Othello.place_token(2, 6, 4, board);
-        return [board, true]; 
-    }; 
-
-    if ((row_index + delta_row &lt; 0) || (row_index + delta_row > height - 1)){
-        return [board, false]; 
-    };
-
-    if ((column_index + delta_column &lt; 0) || (column_index + delta_column > width - 1)){
-        return [board, false]; 
-    };
-
-    if (board[column_index+delta_column][row_index+delta_row] === 0){
-        return [board, false]; 
-    }; 
-
-    if (board[column_index + delta_column + delta_column][row_index + delta_row + delta_row] === player){
-        board = Othello.place_token(player, column_index + delta_column, row_index + delta_row, board);
-        return [board, true]; 
-
-    } 
-
-    //TOKEN SPACE TOKEN HAS A PROBLEM IT PLACES 
-
-    if (board[column_index + delta_column + delta_column][row_index + delta_row + delta_row] === player){
-        board = Othello.place_token(player, column_index + delta_column , row_index + delta_row, board);
-        return [board, true]; 
-    };  
-
-    if (board[column_index + delta_column][row_index + delta_row] === player){
-        //board = Othello.place_token(1, 7, 7, board);
-        //board = Othello.place_token(player, column_index + delta_column, row_index + delta_row, board);
-        //board = Othello.place_token(player, column_index + delta_column, row_index + delta_row, board);
-
-        return [board, true]; 
-        
-    } else {
-        let x = Othello.flip_line(player, delta_column, delta_row, column_index + delta_column, row_index + delta_row, board)
-
-        if(x[1]){
-            board = x[0]; 
-            board = Othello.place_token(player, column_index + delta_column, row_index + delta_row, board);
-            //board = Othello.place_token(player, 6 + delta_column, 6 + delta_row, board);
-            return [board, true];
-        } else {
-            return [board, false];
-        }
-    } 
- }; 
-
- Othello.flip_tokens = function(player, column_index, row_index, board){
-    board = Othello.flip_line(player, 0, 1, column_index, row_index, board)[0];
-    return board; 
- };
-/* /////////////////////////
-Othello.flip_line = function(player, delta_column, delta_row, column_index,row_index, board){
-    if ((row_index + delta_row &lt; 0) || (row_index + delta_row > height - 1)){
-        return false; 
-    };
-
-    if ((column_index + delta_column &lt; 0) || (column_index + delta_column > width - 1)){
-        return false; 
-    };
-
-    if (board[column_index+delta_column][row_index+delta_row] === 0){
-        return false; 
-    };
-
-
-    if (board[column_index + delta_column][row_index + delta_row] === player){
-        return true; 
-    } else{
-        if(Othello.flip_line(player, delta_column, delta_row, column_index + delta_column, row_index + delta_row, board)){
-            Othello.place_token(player, column_index + delta_column, row_index + delta_row, board);
-            return true; 
-        }; 
-    };
-};
-/////////////////////////////// */
-/*     if (board[column_index+delta_column][row_index+delta_row] === player){
-        board = Othello.place_token(player, column_index+delta_column, row_index+delta_row, board);
-        return board; 
-    } else {
-        //board = Othello.place_token(player, column_index+delta_column, row_index+delta_row, board);
-        return board; 
-        //board = Othello.place_token(1, 0,0,board); 
-        //return board;
-        //if (board[column_index+delta_column][row_index+delta_row] === player){
-            //board = Othello.place_token(player, column_index+delta_column, row_index+delta_row, board);
-            //board = Othello.place_token(1, 0,0,board); 
-            //board = Othello.flip_line(player,delta_column,delta_row, column_index, row_index, board);
-            //return board;
-        //} else {
-            //return board; 
-        //};
-    }; */
-
-/*  Othello.flip_tokens = function(player, column_index, row_index, board){
-    let temp_board = board;
-    temp_board = Othello.flip_line(player, 0, -1, column_index, row_index, temp_board);
-    temp_board = Othello.flip_line(player, 0, 1, column_index, row_index, temp_board);
-    temp_board = Othello.flip_line(player, 1, 0, column_index, row_index, temp_board);
-    temp_board = Othello.flip_line(player, -1, 0, column_index, row_index, temp_board);
-    temp_board = Othello.flip_line(player, -1, -1, column_index, row_index, temp_board);
-    temp_board = Othello.flip_line(player, 1, -1, column_index, row_index, temp_board);
-    temp_board = Othello.flip_line(player, -1, -1, column_index, row_index, temp_board);
-    temp_board = Othello.flip_line(player, 1, 1, column_index, row_index, temp_board);  
-    return temp_board; 
-};
- */
-/* 
-Othello.find_valid_moves = function(player, legal_moves_board, board){
-    const column = 0; 
-    const row = 0; 
-    
-    const north = true;
-    const south = true;
-    const east = true;
-    const west = true;
-    const north_west = true;
-    const north_east = true;
-    const south_west = true;
-    const south_east = true;
-    if (north || south || east || west || north_east || north_west || south_east || south_west){
-        legal_moves_board = Othello.place_token(player, column, row, legal_moves_board);
-    };
-                //legal_moves_board[column_index][row_index] = 1; 
-
-    return legal_moves_board;
-};  */
-
-
-Othello.column_as_array = function (board, column_index) {
-    const column = board[column_index];
-    /* for (let i = 0; i &lt; height; i++) {
-        column.push(board[column_index][i]);
-    }; */
-    //column = R.reverse(column); 
-    return column;
-};
-
-Othello.row_as_array = function (board, row_index) {
-    const row = R.transpose(board)[row_index];
-    /* for (let i = 0; i &lt; height; i++) {
-        column.push(board[column_index][i]);
-    }; */
-    //column = R.reverse(column); 
-    return row;
-};
-
-Othello.other_player = function(player){
-    if (player === 1){
-        return 2;
-    } else if (player === 2) {
-        return 1;
-    };
-};
-
-Othello.score = function(player, board){
-    let score = 0; 
-    for (let i = 0; i&lt; 8; i++){
-        for (let j = 0; j &lt; 8; j++){
-            if (board[i][j] === player){
-                score = score + 1; 
-            }
-        };
-    }; 
-    return score; 
-};
-
->>>>>>> 71b27636da72beb86fe0d6c67cb98746cb9a034a
-export default Object.freeze(Othello); </code></pre>
+export default Object.freeze(Othello);</code></pre>
         </article>
     </section>
 
@@ -913,7 +346,7 @@ export default Object.freeze(Othello); </code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Sat Jul 09 2022 17:47:52 GMT+0800 (Singapore Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Mon Jul 11 2022 20:59:04 GMT+0800 (Singapore Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
