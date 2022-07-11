@@ -6,7 +6,6 @@
 */
 
 import e from "express";
-import { F, or } from "rambda";
 import Othello from "../common/Othello.js";
 import R from "../common/ramda.js";
 

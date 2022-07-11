@@ -27,7 +27,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Othello.html">Othello</a><ul class='methods'><li data-type='method'><a href="Othello.html#.adjacent_support">adjacent_support</a></li><li data-type='method'><a href="Othello.html#.check_line">check_line</a></li><li data-type='method'><a href="Othello.html#.empty_board">empty_board</a></li><li data-type='method'><a href="Othello.html#.find_valid_moves">find_valid_moves</a></li><li data-type='method'><a href="Othello.html#.game_over">game_over</a></li><li data-type='method'><a href="Othello.html#.is_cell_empty">is_cell_empty</a></li><li data-type='method'><a href="Othello.html#.legal_moves_available">legal_moves_available</a></li><li data-type='method'><a href="Othello.html#.other_player">other_player</a></li><li data-type='method'><a href="Othello.html#.place_token">place_token</a></li><li data-type='method'><a href="Othello.html#.random_legal_move">random_legal_move</a></li><li data-type='method'><a href="Othello.html#.score">score</a></li><li data-type='method'><a href="Othello.html#.setup_board">setup_board</a></li><li data-type='method'><a href="Othello.html#.winner">winner</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Othello.html">Othello</a><ul class='methods'><li data-type='method'><a href="Othello.html#.adjacent_support">adjacent_support</a></li><li data-type='method'><a href="Othello.html#.check_line">check_line</a></li><li data-type='method'><a href="Othello.html#.empty_board">empty_board</a></li><li data-type='method'><a href="Othello.html#.find_valid_moves">find_valid_moves</a></li><li data-type='method'><a href="Othello.html#.game_over">game_over</a></li><li data-type='method'><a href="Othello.html#.is_cell_empty">is_cell_empty</a></li><li data-type='method'><a href="Othello.html#.legal_moves_available">legal_moves_available</a></li><li data-type='method'><a href="Othello.html#.other_player">other_player</a></li><li data-type='method'><a href="Othello.html#.place_token">place_token</a></li><li data-type='method'><a href="Othello.html#.random_legal_move">random_legal_move</a></li><li data-type='method'><a href="Othello.html#.score">score</a></li><li data-type='method'><a href="Othello.html#.setup_board">setup_board</a></li><li data-type='method'><a href="Othello.html#.to_string">to_string</a></li><li data-type='method'><a href="Othello.html#.to_string_with_tokens">to_string_with_tokens</a></li><li data-type='method'><a href="Othello.html#.winner">winner</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -63,6 +63,31 @@ Othello.token_strings = Object.freeze({
     "default": ["0", "1", "2"],
     "disks": ["", "⚫", "⚪"]
 });
+
+/**
+ * Returns a {@link Othello.to_string} like function, mapping tokens to given string representations
+ * @memberof Othello
+ * @function
+ * @param {string[]} token_strings
+ * @returns {function} The string representation of the board
+ */
+ Othello.to_string_with_tokens = (token_strings) => (board) => R.pipe(
+    R.transpose,
+    R.reverse,
+    replace_tokens_on_board(token_strings),
+    R.map(R.join(" ")),
+    R.join("\n")
+)(board);
+
+/**
+ * Returns a string representation of the board
+ * @memberof Othello
+ * @function
+ * @param {board} board The board to be represented
+ * @returns {string} The string representation of the board
+ */
+ Othello.to_string = Othello.to_string_with_tokens(["0", "1", "2"]);
+
 
 /**
  * Create a new empty board, represented as an array of arrays (2D array)
@@ -244,13 +269,13 @@ Othello.legal_moves_available = function(player, legal_moves_board){
     return available_moves;
 };
 
+
 /**
- *Function which returns the score for a player
+ *Function which returns the other player
  * @memberof Othello
  * @function
- * @param {number} no_legal_move_counter Player, either 1 (Black) or 2 (White)
- * @param {number[][]} board The current state of the game board
- * @returns {number} 1 if the current player is 2; 2 if the current player is 1
+ * @param {number} player Player, either 1 (Black) or 2 (White)
+ * @returns {number} The number of elements, which are equal to player, in the current board
  */
 Othello.other_player = function(player){
     if (player === 1){
@@ -261,11 +286,12 @@ Othello.other_player = function(player){
 };
 
 /**
- *Function which returns the other player
+ *Function which returns the score for a player
  * @memberof Othello
  * @function
  * @param {number} player Player, either 1 (Black) or 2 (White)
- * @returns {number} The number of elements, which are equal to player, in the current board
+ * @param {number[][]} board The current state of the game board
+ * @returns {number} 1 if the current player is 2; 2 if the current player is 1
  */
 Othello.score = function(player, board){
     let score = 0;
@@ -346,7 +372,7 @@ export default Object.freeze(Othello);</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Mon Jul 11 2022 20:56:53 GMT+0800 (Singapore Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Mon Jul 11 2022 23:30:10 GMT+0800 (Singapore Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
