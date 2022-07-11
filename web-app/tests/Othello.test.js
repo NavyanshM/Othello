@@ -303,7 +303,7 @@ describe("Game ended", function () {
         }
     })
 
-    it("Conditions satisfid but the game is not over", function () {
+    it("Conditions satisfied but the game is not over", function () {
         no_legal_move_counter = 2;
         board = Othello.empty_board(8,8);
         for (let i = 0; i < 8; i++){
@@ -420,6 +420,52 @@ describe("Winner", function () {
         ) {
             throw new Error(
                 "Scores are equal but the game is not a tie " +
+                board + 
+                " Othello.winner(): " +
+                Othello.winner(board)
+            )
+        }
+    })
+    
+    it("Black won", function () {
+        for (let i = 0; i < 5; i++){
+            for (let j = 0; j < 8; j++){
+                board = Othello.place_token(1, i , j, board)
+            }
+        }
+        for (let i = 5; i < 8; i++){
+            for (let j = 0; j < 8; j++){
+                board = Othello.place_token(2, i , j, board)
+            }
+        }
+        if (
+            Othello.winner(board) !== "Black"
+        ) {
+            throw new Error(
+                "Black has more tokens but black has not won " +
+                board + 
+                " Othello.winner(): " +
+                Othello.winner(board)
+            )
+        }
+    })
+    
+    it("White won", function () {
+        for (let i = 0; i < 3; i++){
+            for (let j = 0; j < 8; j++){
+                board = Othello.place_token(1, i , j, board)
+            }
+        }
+        for (let i = 3; i < 8; i++){
+            for (let j = 0; j < 8; j++){
+                board = Othello.place_token(2, i , j, board)
+            }
+        }
+        if (
+            Othello.winner(board) !== "White"
+        ) {
+            throw new Error(
+                "White has more tokens but black has not won " +
                 board + 
                 " Othello.winner(): " +
                 Othello.winner(board)
