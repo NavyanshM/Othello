@@ -27,7 +27,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Othello.html">Othello</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Othello.html">Othello</a><ul class='methods'><li data-type='method'><a href="Othello.html#.adjacent_support">adjacent_support</a></li><li data-type='method'><a href="Othello.html#.check_line">check_line</a></li><li data-type='method'><a href="Othello.html#.empty_board">empty_board</a></li><li data-type='method'><a href="Othello.html#.find_valid_moves">find_valid_moves</a></li><li data-type='method'><a href="Othello.html#.game_over">game_over</a></li><li data-type='method'><a href="Othello.html#.is_cell_empty">is_cell_empty</a></li><li data-type='method'><a href="Othello.html#.legal_moves_available">legal_moves_available</a></li><li data-type='method'><a href="Othello.html#.other_player">other_player</a></li><li data-type='method'><a href="Othello.html#.place_token">place_token</a></li><li data-type='method'><a href="Othello.html#.random_legal_move">random_legal_move</a></li><li data-type='method'><a href="Othello.html#.score">score</a></li><li data-type='method'><a href="Othello.html#.setup_board">setup_board</a></li><li data-type='method'><a href="Othello.html#.winner">winner</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -44,62 +44,9 @@
         <article>
             <pre class="prettyprint source linenums"><code>/**
  * @namespace Othello
-   @description Othello.js defines the gameplay, rules and conditions for the game Othello. This game module can be implemented with a HTML and CSS web-app interface.
+   @description Othello.js defines the gameplay, rules and conditions for the game Othello. This game module can be implemented with a HTML and CSS web-app interface
  * @author Navyansh Malhotra
  * @version v1.0
- */
-
-/**
- * A Board is an rectangular grid that tokens can be placed into one at a time.
- * Tokens fill up empty positions from the bottom of a column upwards.
- * It is implemented as an array of columns (rather than rows) of tokens
- * (or empty positions)
- * @memberof Othello
- * @typedef {Connect4.Token_or_empty[][]} Board
- */
-
-/**
- * A token is a coloured disk that players place in the grid.
- * @memberof Othello
- * @typedef {(1 | 2)} Token
- */
-
-/**
- * Either a token or an empty position.
- * @memberof Othello
- * @typedef {(Connect4.Token | 0)} Token_or_empty
- */
-
-/**
- * A set of template token strings for {@link Connect4.to_string_with_tokens}.
- * @memberof Connect4
- * @enum {string[]}
- * @property {string[]} default ["0", "1", "2"] Displays tokens by their index.
- * @property {string[]} disks ["⚫", "🔴", "🟡"]
- * Displays tokens as coloured disks.
- * @property {string[]} zombies ["🟫", "🚧", "🧟"]
- * Displays tokens as zombies and barricades.
- */
-
-/**
- * Impure Function.
- * Logs to the console a string representation of a board,
- * and returns that board.
- * @memberof Connect4
- * @function
- * @param {Connect4.board} board The board to represent.
- * @returns {Connect4.board} String representation.
- */
-
-/**
- * Create a new empty board.
- * Optionally with a specified width and height,
- * otherwise returns a standard 7 wide, 6 high board.
- * @memberof Connect4
- * @function
- * @param {number} [width = 8] The width of the new board.
- * @param {number} [height = 8] The height of the new board.
- * @returns {Connect4.Board} An empty board for starting a game.
  */
 
 /*jslint es6 */
@@ -117,22 +64,29 @@ Othello.token_strings = Object.freeze({
     "disks": ["", "⚫", "⚪"]
 });
 
+/**
+ * Create a new empty board, represented as an array of arrays (2D array)
+ * @memberof Othello
+ * @function
+ * @param {number} [width] The width of the new board
+ * @param {number} [height] The height of the new board
+ * @returns {board} An empty board for starting a game or to hold legal moves
+ */
 Othello.empty_board = function (width, height) {
     "use strict";
     return R.repeat(R.repeat(0, height), width);
 };
 
-
-
-Othello.setup_board = function(board){
-    "use strict";
-    board = Othello.place_token(1, 3, 4, board);
-    board = Othello.place_token(1, 4, 3, board);
-    board = Othello.place_token(2, 3, 3, board);
-    board = Othello.place_token(2, 4, 4, board);
-    return board;
-};
-
+/**
+ * Places a token in a given position
+ * @memberof Othello
+ * @function
+ * @param {number} player The new value to be pushed into the array
+ * @param {number} column_index Array column to be updated
+ * @param {number} row_index Array row to be updatd
+ * @param {number[][]} board Original state of the board, to be updated
+ * @returns {board} Returns the new state of the board.
+ */
 Othello.place_token = function (player, column_index, row_index, board) {
     "use strict";
     return R.update(
@@ -142,17 +96,30 @@ Othello.place_token = function (player, column_index, row_index, board) {
     );
 };
 
-
-Othello.is_ended= function(board) {
+/**
+ * Places the initial 4 tokens as per the rules of Othello
+ * @memberof Othello
+ * @function
+ * @param {number[][]} board The empty board
+ * @returns {board} An updated board with 4 tokens placed; 2 white and 2 black.
+ */
+ Othello.setup_board = function(board){
     "use strict";
-    return false;
+    board = Othello.place_token(1, 3, 4, board);
+    board = Othello.place_token(1, 4, 3, board);
+    board = Othello.place_token(2, 3, 3, board);
+    board = Othello.place_token(2, 4, 4, board);
+    return board;
 };
 
-Othello.size = function (board) {
-    "use strict";
-    return [board.length, board[0].length];
-};
-
+/**
+ * Checks if a cell is empty
+ * @memberof Othello
+ * @function
+ * @param {number} column_index The column to be checked
+ * @param {number[][]} row_index The row to be checked
+ * @returns {(true | false)} True if index is empty (i.e = 0) else False
+ */
 Othello.is_cell_empty = function (column_index, row_index, board) {
     "use strict";
     if (board[column_index][width - 1 - row_index] === 0) {
@@ -163,6 +130,18 @@ Othello.is_cell_empty = function (column_index, row_index, board) {
     }
 };
 
+/**
+ * Recursive function to check if a token bounds a series of the other player's tokens, with it's own colour on the other side
+ * @memberof Othello
+ * @function
+ * @param {number} player Player which is placing the new token, either 1 (Black) or 2 (White)
+ * @param {number} delta_column Defines the column direction to be checked
+ * @param {number} delta_row Defines the row direction to be checked
+ * @param {number} column_index Defines the column where the new token is being placed
+ * @param {number} row_index Defines the row where the new token is being placed
+ * @param {number[][]} board The original state of the board, before the new token has been placed
+ * @returns {(true | false)} True if the next element (as per delta_column and delta_row) is the same value as player
+ */
 Othello.check_line = function (player, delta_column, delta_row, column_index, row_index, board){
     "use strict";
     if (board[column_index][row_index] === player){
@@ -180,6 +159,18 @@ Othello.check_line = function (player, delta_column, delta_row, column_index, ro
     return (Othello.check_line(player, delta_column, delta_row, column_index + delta_column, row_index + delta_row, board));
 };
 
+/**
+ * Function which provides iterative element indices to the check_line function
+ * @memberof Othello
+ * @function
+ * @param {number} player Player which is placing the new token, either 1 (Black) or 2 (White)
+ * @param {number} delta_column Defines the column direction to be checked
+ * @param {number} delta_row Defines the row direction to be checked
+ * @param {number} column_index Defines the column where the new token is being placed
+ * @param {number} row_index Defines the row where the new token is being placed
+ * @param {number[][]} board The original state of the board, before the new token has been placed
+ * @returns {(true | false)} Boolean value determined by the return value of the check_line function
+ */
 Othello.adjacent_support = function(player, delta_column, delta_row, column_index, row_index, board){
     "use strict";
     let other_player = Othello.other_player(player);
@@ -201,6 +192,15 @@ Othello.adjacent_support = function(player, delta_column, delta_row, column_inde
     return Othello.check_line(player, delta_column, delta_row, column_index + delta_column + delta_column, row_index + delta_row + delta_row, board);
 };
 
+/**
+ * Function which updates the legal move board with all the legal moves available, for the player, based on the current state of the board
+ * @memberof Othello
+ * @function
+ * @param {number} player Player, either 1 (Black) or 2 (White)
+ * @param {number[][]} legal_moves_board The current legal moves board
+ * @param {number[][]} board The current state of the game board
+ * @returns {number[][]} The updated legal moves board
+ */
 Othello.find_valid_moves = function(player, legal_moves_board, board){
     "use strict";
     legal_moves_board = Othello.empty_board(width, height);
@@ -224,6 +224,14 @@ Othello.find_valid_moves = function(player, legal_moves_board, board){
     return legal_moves_board;
 };
 
+/**
+ * Function which updates the legal move board with all the legal moves available, for the player, based on the current state of the board
+ * @memberof Othello
+ * @function
+ * @param {number} player Player, either 1 (Black) or 2 (White)
+ * @param {number[][]} legal_moves_board The current legal moves board
+ * @returns {(true | false)} True if any element in the legal moves board is equal to the player
+ */
 Othello.legal_moves_available = function(player, legal_moves_board){
     let available_moves = false;
     for (let row = 0; row &lt; height; row++){
@@ -236,16 +244,14 @@ Othello.legal_moves_available = function(player, legal_moves_board){
     return available_moves;
 };
 
-Othello.column_as_array = function (board, column_index) {
-    const column = board[column_index];
-    return column;
-};
-
-Othello.row_as_array = function (board, row_index) {
-    const row = R.transpose(board)[row_index];
-    return row;
-};
-
+/**
+ *Function which returns the score for a player
+ * @memberof Othello
+ * @function
+ * @param {number} no_legal_move_counter Player, either 1 (Black) or 2 (White)
+ * @param {number[][]} board The current state of the game board
+ * @returns {number} 1 if the current player is 2; 2 if the current player is 1
+ */
 Othello.other_player = function(player){
     if (player === 1){
         return 2;
@@ -254,6 +260,13 @@ Othello.other_player = function(player){
     };
 };
 
+/**
+ *Function which returns the other player
+ * @memberof Othello
+ * @function
+ * @param {number} player Player, either 1 (Black) or 2 (White)
+ * @returns {number} The number of elements, which are equal to player, in the current board
+ */
 Othello.score = function(player, board){
     let score = 0;
     for (let i = 0; i&lt; 8; i++){
@@ -266,6 +279,14 @@ Othello.score = function(player, board){
     return score;
 };
 
+/**
+ *Checks game over conditions
+ * @memberof Othello
+ * @function
+ * @param {number} no_legal_move_counter Counter which hold how many consecutive plays there have been with no legal moves
+ * @param {number[][]} board The current state of the board
+ * @returns {(true|false)} Returns true if the sum of the scores is 64, there have been two consecutive plays with no legal moves or either player has no tokens on the board
+ */
 Othello.game_over = function(no_legal_move_counter, board){
     if ((Othello.score(1, board) + Othello.score(2, board) === 64) || (no_legal_move_counter === 2) || (Othello.score(1, board) === 0) || (Othello.score(2, board) === 0)){
         return true;
@@ -274,6 +295,13 @@ Othello.game_over = function(no_legal_move_counter, board){
     };
 };
 
+/**
+ *Determines and returns the winner
+ * @memberof Othello
+ * @function
+ * @param {number[][]} board The current state of the board
+ * @returns {text} Returns 'Black' if black's score is higher than white, returns 'Tie' if the two scores are equal, else returns 'White'
+ */
 Othello.winner = function(board){
     if (Othello.score(1, board) > Othello.score(2, board)){
         return "Black";
@@ -284,6 +312,14 @@ Othello.winner = function(board){
     }
 };
 
+/**
+ *Returns the index for a random legal move. Used in the 1 player game mode
+ * @memberof Othello
+ * @function
+ * @param {number} player The player whose turn is being played
+ * @param {number[][]} legal_moves_board An array representing all the possible legal moves based on the current state of the game board
+ * @returns {number[]} Returns a random index from the 2D list random_legal_moves
+ */
 Othello.random_legal_move = function(player, legal_moves_board){
     let legal_moves_array = [];
     for (let i = 0; i &lt; 8; i++){
@@ -295,6 +331,7 @@ Othello.random_legal_move = function(player, legal_moves_board){
     }
     return legal_moves_array[Math.floor(Math.random() * legal_moves_array.length)];
 }
+
 export default Object.freeze(Othello);</code></pre>
         </article>
     </section>
@@ -309,7 +346,7 @@ export default Object.freeze(Othello);</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Mon Jul 11 2022 18:33:55 GMT+0800 (Singapore Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Mon Jul 11 2022 20:38:29 GMT+0800 (Singapore Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

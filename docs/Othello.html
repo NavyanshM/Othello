@@ -27,7 +27,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Othello.html">Othello</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Othello.html">Othello</a><ul class='methods'><li data-type='method'><a href="Othello.html#.adjacent_support">adjacent_support</a></li><li data-type='method'><a href="Othello.html#.check_line">check_line</a></li><li data-type='method'><a href="Othello.html#.empty_board">empty_board</a></li><li data-type='method'><a href="Othello.html#.find_valid_moves">find_valid_moves</a></li><li data-type='method'><a href="Othello.html#.game_over">game_over</a></li><li data-type='method'><a href="Othello.html#.is_cell_empty">is_cell_empty</a></li><li data-type='method'><a href="Othello.html#.legal_moves_available">legal_moves_available</a></li><li data-type='method'><a href="Othello.html#.other_player">other_player</a></li><li data-type='method'><a href="Othello.html#.place_token">place_token</a></li><li data-type='method'><a href="Othello.html#.random_legal_move">random_legal_move</a></li><li data-type='method'><a href="Othello.html#.score">score</a></li><li data-type='method'><a href="Othello.html#.setup_board">setup_board</a></li><li data-type='method'><a href="Othello.html#.winner">winner</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -111,7 +111,7 @@
 
 
             
-                <div class="description usertext"><p>Othello.js defines the gameplay, rules and conditions for the game Othello. This game module can be implemented with a HTML and CSS web-app interface.</p></div>
+                <div class="description usertext"><p>Othello.js defines the gameplay, rules and conditions for the game Othello. This game module can be implemented with a HTML and CSS web-app interface</p></div>
             
 
             
@@ -134,14 +134,16 @@
     
 
     
-
-    
-        <h3 class="subsection-title">Type Definitions</h3>
+        <h3 class="subsection-title">Methods</h3>
 
         
-                
-<h4 class="name" id=".Board">Board</h4>
+            
 
+    
+
+    <h4 class="name" id=".adjacent_support"><span class="type-signature">(static) </span>adjacent_support<span class="signature">(player, delta_column, delta_row, column_index, row_index, board)</span><span class="type-signature"> &rarr; {true|false}</span></h4>
+
+    
 
 
 
@@ -151,7 +153,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Othello.js.html">Othello.js</a>, <a href="Othello.js.html#line8">line 8</a>
+        <a href="Othello.js.html">Othello.js</a>, <a href="Othello.js.html#line130">line 130</a>
     </li></ul></dd>
     
 
@@ -191,109 +193,233 @@
 
 
 <div class="description usertext">
-    <p>A Board is an rectangular grid that tokens can be placed into one at a time.
-Tokens fill up empty positions from the bottom of a column upwards.
-It is implemented as an array of columns (rather than rows) of tokens
-(or empty positions)</p>
+    <p>Function which provides iterative element indices to the check_line function</p>
 </div>
 
 
 
-    <h5>Type:</h5>
-    <ul>
-        <li>
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
             
-<span class="param-type">Array.&lt;Array.&lt;Connect4.Token_or_empty>></span>
+                <td class="name"><code>player</code></td>
+            
 
-
-        </li>
-    </ul>
-
-
-
-
-
-
+            <td class="type">
             
                 
-<h4 class="name" id=".Token">Token</h4>
+<span class="param-type">number</span>
 
 
+            
+            </td>
 
+            
 
+            
 
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Othello.js.html">Othello.js</a>, <a href="Othello.js.html#line17">line 17</a>
-    </li></ul></dd>
-    
+            <td class="description last"><p>Player which is placing the new token, either 1 (Black) or 2 (White)</p></td>
+        </tr>
 
     
 
-    
+        <tr>
+            
+                <td class="name"><code>delta_column</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Defines the column direction to be checked</p></td>
+        </tr>
 
     
 
-    
+        <tr>
+            
+                <td class="name"><code>delta_row</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Defines the row direction to be checked</p></td>
+        </tr>
 
     
 
-    
+        <tr>
+            
+                <td class="name"><code>column_index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Defines the column where the new token is being placed</p></td>
+        </tr>
 
     
 
-    
+        <tr>
+            
+                <td class="name"><code>row_index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Defines the row where the new token is being placed</p></td>
+        </tr>
 
     
 
-    
+        <tr>
+            
+                <td class="name"><code>board</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The original state of the board, before the new token has been placed</p></td>
+        </tr>
 
     
-
-    
-
-    
-
-    
-
-    
-</dl>
+    </tbody>
+</table>
 
 
 
 
 
-<div class="description usertext">
-    <p>A token is a coloured disk that players place in the grid.</p>
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Boolean value determined by the return value of the check_line function</p>
 </div>
 
 
 
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">1</span>
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">true</span>
 |
 
-<span class="param-type">2</span>
+<span class="param-type">false</span>
 
 
-        </li>
-    </ul>
+    </dd>
+</dl>
+
+    
 
 
 
-
-
-
+        
             
-                
-<h4 class="name" id=".Token_or_empty">Token_or_empty</h4>
 
+    
+
+    <h4 class="name" id=".check_line"><span class="type-signature">(static) </span>check_line<span class="signature">(player, delta_column, delta_row, column_index, row_index, board)</span><span class="type-signature"> &rarr; {true|false}</span></h4>
+
+    
 
 
 
@@ -303,7 +429,7 @@ It is implemented as an array of columns (rather than rows) of tokens
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Othello.js.html">Othello.js</a>, <a href="Othello.js.html#line23">line 23</a>
+        <a href="Othello.js.html">Othello.js</a>, <a href="Othello.js.html#line101">line 101</a>
     </li></ul></dd>
     
 
@@ -343,30 +469,2250 @@ It is implemented as an array of columns (rather than rows) of tokens
 
 
 <div class="description usertext">
-    <p>Either a token or an empty position.</p>
+    <p>Recursive function to check if a token bounds a series of the other player's tokens, with it's own colour on the other side</p>
 </div>
 
 
 
-    <h5>Type:</h5>
-    <ul>
-        <li>
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
             
-<span class="param-type">Connect4.Token</span>
+                <td class="name"><code>player</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Player which is placing the new token, either 1 (Black) or 2 (White)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>delta_column</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Defines the column direction to be checked</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>delta_row</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Defines the row direction to be checked</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>column_index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Defines the column where the new token is being placed</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>row_index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Defines the row where the new token is being placed</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>board</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The original state of the board, before the new token has been placed</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>True if the next element (as per delta_column and delta_row) is the same value as player</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">true</span>
 |
 
-<span class="param-type">0</span>
+<span class="param-type">false</span>
 
 
-        </li>
-    </ul>
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".empty_board"><span class="type-signature">(static) </span>empty_board<span class="signature">(width<span class="signature-attributes">opt</span>, height<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {board}</span></h4>
+
+    
 
 
 
 
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Othello.js.html">Othello.js</a>, <a href="Othello.js.html#line31">line 31</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Create a new empty board, represented as an array of arrays (2D array)</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
 
 
             
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The width of the new board</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>height</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The height of the new board</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>An empty board for starting a game or to hold legal moves</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">board</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".find_valid_moves"><span class="type-signature">(static) </span>find_valid_moves<span class="signature">(player, legal_moves_board, board)</span><span class="type-signature"> &rarr; {Array.&lt;Array.&lt;number>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Othello.js.html">Othello.js</a>, <a href="Othello.js.html#line160">line 160</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Function which updates the legal move board with all the legal moves available, for the player, based on the current state of the board</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>player</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Player, either 1 (Black) or 2 (White)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>legal_moves_board</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current legal moves board</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>board</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current state of the game board</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The updated legal moves board</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".game_over"><span class="type-signature">(static) </span>game_over<span class="signature">(no_legal_move_counter, board)</span><span class="type-signature"> &rarr; {true|false}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Othello.js.html">Othello.js</a>, <a href="Othello.js.html#line246">line 246</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Checks game over conditions</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>no_legal_move_counter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Counter which hold how many consecutive plays there have been with no legal moves</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>board</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current state of the board</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Returns true if the sum of the scores is 64, there have been two consecutive plays with no legal moves or either player has no tokens on the board</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">true</span>
+|
+
+<span class="param-type">false</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".is_cell_empty"><span class="type-signature">(static) </span>is_cell_empty<span class="signature">(column_index, row_index)</span><span class="type-signature"> &rarr; {true|false}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Othello.js.html">Othello.js</a>, <a href="Othello.js.html#line79">line 79</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Checks if a cell is empty</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>column_index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The column to be checked</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>row_index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The row to be checked</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>True if index is empty (i.e = 0) else False</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">true</span>
+|
+
+<span class="param-type">false</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".legal_moves_available"><span class="type-signature">(static) </span>legal_moves_available<span class="signature">(player, legal_moves_board)</span><span class="type-signature"> &rarr; {true|false}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Othello.js.html">Othello.js</a>, <a href="Othello.js.html#line191">line 191</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Function which updates the legal move board with all the legal moves available, for the player, based on the current state of the board</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>player</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Player, either 1 (Black) or 2 (White)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>legal_moves_board</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current legal moves board</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>True if any element in the legal moves board is equal to the player</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">true</span>
+|
+
+<span class="param-type">false</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".other_player"><span class="type-signature">(static) </span>other_player<span class="signature">(no_legal_move_counter, board)</span><span class="type-signature"> &rarr; {number}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Othello.js.html">Othello.js</a>, <a href="Othello.js.html#line211">line 211</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Function which returns the score for a player</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>no_legal_move_counter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Player, either 1 (Black) or 2 (White)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>board</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current state of the game board</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>1 if the current player is 2; 2 if the current player is 1</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".place_token"><span class="type-signature">(static) </span>place_token<span class="signature">(player, column_index, row_index, board)</span><span class="type-signature"> &rarr; {board}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Othello.js.html">Othello.js</a>, <a href="Othello.js.html#line46">line 46</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Places a token in a given position</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>player</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The new value to be pushed into the array</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>column_index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Array column to be updated</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>row_index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Array row to be updatd</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>board</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Original state of the board, to be updated</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Returns the new state of the board.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">board</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".random_legal_move"><span class="type-signature">(static) </span>random_legal_move<span class="signature">(player, legal_moves_board)</span><span class="type-signature"> &rarr; {Array.&lt;number>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Othello.js.html">Othello.js</a>, <a href="Othello.js.html#line279">line 279</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Returns the index for a random legal move. Used in the 1 player game mode</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>player</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player whose turn is being played</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>legal_moves_board</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An array representing all the possible legal moves based on the current state of the game board</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Returns a random index from the 2D list random_legal_moves</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;number></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".score"><span class="type-signature">(static) </span>score<span class="signature">(player)</span><span class="type-signature"> &rarr; {number}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Othello.js.html">Othello.js</a>, <a href="Othello.js.html#line226">line 226</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Function which returns the other player</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>player</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Player, either 1 (Black) or 2 (White)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The number of elements, which are equal to player, in the current board</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".setup_board"><span class="type-signature">(static) </span>setup_board<span class="signature">(board)</span><span class="type-signature"> &rarr; {board}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Othello.js.html">Othello.js</a>, <a href="Othello.js.html#line62">line 62</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Places the initial 4 tokens as per the rules of Othello</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>board</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The empty board</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>An updated board with 4 tokens placed; 2 white and 2 black.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">board</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".winner"><span class="type-signature">(static) </span>winner<span class="signature">(board)</span><span class="type-signature"> &rarr; {text}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Othello.js.html">Othello.js</a>, <a href="Othello.js.html#line261">line 261</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Determines and returns the winner</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>board</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array.&lt;number>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current state of the board</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Returns 'Black' if black's score is higher than white, returns 'Tie' if the two scores are equal, else returns 'White'</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">text</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
     
 
     
@@ -384,7 +2730,7 @@ It is implemented as an array of columns (rather than rows) of tokens
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Mon Jul 11 2022 18:33:55 GMT+0800 (Singapore Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Mon Jul 11 2022 20:38:29 GMT+0800 (Singapore Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
