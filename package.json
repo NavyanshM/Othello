@@ -13,7 +13,6 @@
   "dependencies": {
     "express": "^4.18.1",
     "jsdc": "^0.6.13",
-    "jsdoc": "^3.6.10",
-    "sweetalert2": "^11.4.20"
+    "jsdoc": "^3.6.10"
   }
 }

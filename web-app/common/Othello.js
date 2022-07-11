@@ -1,6 +1,6 @@
 /**
  * @namespace Othello
- * @description Othello.js defines the gameplay, rules and conditions for the game Othello. This game module can be implemented with a HTML and CSS web-app interface. 
+ * @description Othello.js defines the gameplay, rules and conditions for the game Othello. This game module can be implemented with a HTML and CSS web-app interface.
  * @author Navyansh Malhotra
  * @version v1.0
  */
@@ -58,6 +58,9 @@
  * @returns {Connect4.Board} An empty board for starting a game.
  */
 
+/*jslint es6 */
+/*jslint browser:true */
+/*global window */
 
 import R from "../common/ramda.js";
 
@@ -67,24 +70,27 @@ const height = 8;
 
 Othello.token_strings = Object.freeze({
     "default": ["0", "1", "2"],
-    "disks": ["", "⚫", "⚪"],
+    "disks": ["", "⚫", "⚪"]
 });
 
 Othello.empty_board = function (width, height) {
+    "use strict";
     return R.repeat(R.repeat(0, height), width);
 };
 
 
 
 Othello.setup_board = function(board){
+    "use strict";
     board = Othello.place_token(1, 3, 4, board);
     board = Othello.place_token(1, 4, 3, board);
     board = Othello.place_token(2, 3, 3, board);
-    board = Othello.place_token(2, 4, 4, board); 
+    board = Othello.place_token(2, 4, 4, board);
     return board;
 };
 
 Othello.place_token = function (player, column_index, row_index, board) {
+    "use strict";
     return R.update(
         column_index,
         R.update(row_index, player, board[column_index]),
@@ -94,77 +100,69 @@ Othello.place_token = function (player, column_index, row_index, board) {
 
 
 Othello.is_ended= function(board) {
+    "use strict";
     return false;
 };
 
 Othello.size = function (board) {
+    "use strict";
     return [board.length, board[0].length];
 };
 
 Othello.is_cell_empty = function (column_index, row_index, board) {
+    "use strict";
     if (board[column_index][width - 1 - row_index] === 0) {
         return true;
     }
     else{
         return false;
-    };
+    }
 };
 
 Othello.check_line = function (player, delta_column, delta_row, column_index, row_index, board){
+    "use strict";
     if (board[column_index][row_index] === player){
-        return true; 
-    }; 
-
-
+        return true;
+    }
     if (board[column_index][row_index] === 0){
-        return false; 
-    }; 
-
-    
+        return false;
+    }
     if ((row_index + delta_row < 0) || (row_index + delta_row > height - 1)){
-        return false; 
-    };
-
+        return false;
+    }
     if ((column_index + delta_column < 0) || (column_index + delta_column > width - 1)){
-        return false; 
-    };
-
-    return (Othello.check_line(player, delta_column, delta_row, column_index + delta_column, row_index + delta_row, board));  
+        return false;
+    }
+    return (Othello.check_line(player, delta_column, delta_row, column_index + delta_column, row_index + delta_row, board));
 };
 
 Othello.adjacent_support = function(player, delta_column, delta_row, column_index, row_index, board){
+    "use strict";
     let other_player = Othello.other_player(player);
-
     if ((row_index + delta_row < 0) || (row_index + delta_row > height - 1)){
-        return false; 
-    };
-
+        return false;
+    }
     if ((column_index + delta_column < 0) || (column_index + delta_column > width - 1)){
-        return false; 
-    };
-
+        return false;
+    }
     if (board[column_index+delta_column][row_index+delta_row] !== other_player){
-        return false; 
-    };
-
+        return false;
+    }
     if ((row_index + delta_row + delta_row < 0) || (row_index + delta_row + delta_row > height - 1)){
-        return false; 
-    };
-
+        return false;
+    }
     if ((column_index + delta_column + delta_column < 0) || (column_index + delta_column + delta_column > width - 1)){
-        return false; 
-    };
-
-    return Othello.check_line(player, delta_column, delta_row, column_index + delta_column + delta_column, row_index + delta_row + delta_row, board);  
-}; 
+        return false;
+    }
+    return Othello.check_line(player, delta_column, delta_row, column_index + delta_column + delta_column, row_index + delta_row + delta_row, board);
+};
 
 Othello.find_valid_moves = function(player, legal_moves_board, board){
-    legal_moves_board = Othello.empty_board(width, height); 
+    "use strict";
+    legal_moves_board = Othello.empty_board(width, height);
     for (let row = 0; row < height; row++){
         for (let column = 0; column < width; column++){
-            //7 - ROW 
             if (Othello.is_cell_empty(column, 7 - row, board)){
-                //legal_moves_board = Othello.place_token(player, column, row, legal_moves_board);
                 let north = Othello.adjacent_support(player, 0, -1, column, row, board);
                 let south = Othello.adjacent_support(player, 0, 1, column, row, board);
                 let east = Othello.adjacent_support(player, 1, 0, column, row, board);
@@ -172,29 +170,26 @@ Othello.find_valid_moves = function(player, legal_moves_board, board){
                 let north_west = Othello.adjacent_support(player, -1, -1, column, row, board);
                 let north_east = Othello.adjacent_support(player, 1, -1, column, row, board);
                 let south_west = Othello.adjacent_support(player, -1, 1, column, row, board);
-                let south_east = Othello.adjacent_support(player, 1, 1, column, row, board);  
-
+                let south_east = Othello.adjacent_support(player, 1, 1, column, row, board);
                if (north || south || east || west || north_east || north_west || south_east || south_west){
                     legal_moves_board = Othello.place_token(player, column, row, legal_moves_board);
-                };  
-
+                };
             };
         };
-    };  
-
-    return legal_moves_board; 
-}; 
+    };
+    return legal_moves_board;
+};
 
 Othello.legal_moves_available = function(player, legal_moves_board){
-    let available_moves = false; 
+    let available_moves = false;
     for (let row = 0; row < height; row++){
         for (let column = 0; column < width; column++){
             if (legal_moves_board[column][row] === player){
-                available_moves = true; 
+                available_moves = true;
             }
         }
-    }    
-    return available_moves; 
+    }
+    return available_moves;
 };
 
 Othello.column_as_array = function (board, column_index) {
@@ -216,23 +211,23 @@ Othello.other_player = function(player){
 };
 
 Othello.score = function(player, board){
-    let score = 0; 
+    let score = 0;
     for (let i = 0; i< 8; i++){
         for (let j = 0; j < 8; j++){
             if (board[i][j] === player){
-                score = score + 1; 
+                score = score + 1;
             }
         };
-    }; 
-    return score; 
+    };
+    return score;
 };
 
 Othello.game_over = function(no_legal_move_counter, board){
     if ((Othello.score(1, board) + Othello.score(2, board) === 64) || (no_legal_move_counter === 2) || (Othello.score(1, board) === 0) || (Othello.score(2, board) === 0)){
-        return true; 
+        return true;
     } else {
         return false;
-    };  
+    };
 };
 
 Othello.winner = function(board){
@@ -251,9 +246,9 @@ Othello.random_legal_move = function(player, legal_moves_board){
         for (let j = 0; j < 8; j++){
             if (legal_moves_board[i][j] === player){
                 legal_moves_array.push([i,j])
-            } 
+            }
         }
     }
-    return legal_moves_array[Math.floor(Math.random() * legal_moves_array.length)]; 
+    return legal_moves_array[Math.floor(Math.random() * legal_moves_array.length)];
 }
-export default Object.freeze(Othello); 
+export default Object.freeze(Othello);
