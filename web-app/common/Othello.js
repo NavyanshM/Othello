@@ -188,6 +188,9 @@ Othello.find_valid_moves = function(player, legal_moves_board, board){
     for (let row = 0; row < height; row++){
         for (let column = 0; column < width; column++){
             if (Othello.is_cell_empty(column, 7 - row, board)){
+                /**
+                 * Defines the delta row and detla column for every direction
+                */
                 let north = Othello.adjacent_support(player, 0, -1, column, row, board);
                 let south = Othello.adjacent_support(player, 0, 1, column, row, board);
                 let east = Othello.adjacent_support(player, 1, 0, column, row, board);

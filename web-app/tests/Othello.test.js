@@ -38,54 +38,50 @@ const display_board = function (board) {
 * @param {board} board The board to test
 * @throws if the board fails any of the above conditions
 */
-const throw_if_invalid = function (board) {
-    "use strict";
-    if (!Array.isArray(board) || !Array.isArray(board[0])) {
-        throw new Error(
-            "The board is not a 2D array: " + display_board(board)
-        );
-    }
-    const height = board[0].length;
-    if (height !== 8){
-        throw new Error(
-            "The height of the board is not 8: " + display_board(board)
-        );
-    }
-    const rectangular = R.all(
-        (column) => column.length === height,
-        board
-    );
-    const num_elements = height * R.transpose(board)[0].length;
-    if (num_elements !== 64){
-        throw new Error(
-            "There are not 64 elements in the board : " + display_board(board)
-
-        );
-    }
-    if (!rectangular) {
-        throw new Error(
-            "The board is not rectangular: " + display_board(board)
-        );
-    }
-
-    const valid_tokens = [0, 1, 2];
-    const contains_valid_tokens = R.pipe(
-        R.flatten,
-        R.all((slot) => valid_tokens.includes(slot))
-    )(board);
-    if (!contains_valid_tokens) {
-        throw new Error(
-            "The board contains invalid tokens: " + display_board(board)
-        );
-    }
-};
 
 describe("Empty Board", function () {
     it("An empty board is a valid board", function () {
-        const empty_board = Othello.empty_board(8,8);
-        throw_if_invalid(empty_board);
+        const board = Othello.empty_board(8,8);
+        if (!Array.isArray(board) || !Array.isArray(board[0])) {
+            throw new Error(
+                "The board is not a 2D array: " + display_board(board)
+            );
+        }
+        const height = board[0].length;
+        if (height !== 8){
+            throw new Error(
+                "The height of the board is not 8: " + display_board(board)
+            );
+        }
+        const rectangular = R.all(
+            (column) => column.length === height,
+            board
+        );
+        const num_elements = height * R.transpose(board)[0].length;
+        if (num_elements !== 64){
+            throw new Error(
+                "There are not 64 elements in the board : " + display_board(board)
+    
+            );
+        }
+        if (!rectangular) {
+            throw new Error(
+                "The board is not rectangular: " + display_board(board)
+            );
+        }
+    
+        const valid_tokens = [0, 1, 2];
+        const contains_valid_tokens = R.pipe(
+            R.flatten,
+            R.all((slot) => valid_tokens.includes(slot))
+        )(board);
+        if (!contains_valid_tokens) {
+            throw new Error(
+                "The board contains invalid tokens: " + display_board(board)
+            );
+        }
+        
     });
-
     it("An empty board has all free elements", function () {
         const empty_board = Othello.empty_board(8,8);
         const all_free_slots = R.pipe(
@@ -465,7 +461,7 @@ describe("Winner", function () {
             Othello.winner(board) !== "White"
         ) {
             throw new Error(
-                "White has more tokens but black has not won " +
+                "White has more tokens but white has not won " +
                 board + 
                 " Othello.winner(): " +
                 Othello.winner(board)

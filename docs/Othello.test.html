@@ -27,7 +27,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Othello.html">Othello</a><ul class='methods'><li data-type='method'><a href="Othello.html#.adjacent_support">adjacent_support</a></li><li data-type='method'><a href="Othello.html#.check_line">check_line</a></li><li data-type='method'><a href="Othello.html#.empty_board">empty_board</a></li><li data-type='method'><a href="Othello.html#.find_valid_moves">find_valid_moves</a></li><li data-type='method'><a href="Othello.html#.game_over">game_over</a></li><li data-type='method'><a href="Othello.html#.is_cell_empty">is_cell_empty</a></li><li data-type='method'><a href="Othello.html#.legal_moves_available">legal_moves_available</a></li><li data-type='method'><a href="Othello.html#.other_player">other_player</a></li><li data-type='method'><a href="Othello.html#.place_token">place_token</a></li><li data-type='method'><a href="Othello.html#.random_legal_move">random_legal_move</a></li><li data-type='method'><a href="Othello.html#.score">score</a></li><li data-type='method'><a href="Othello.html#.setup_board">setup_board</a></li><li data-type='method'><a href="Othello.html#.to_string">to_string</a></li><li data-type='method'><a href="Othello.html#.to_string_with_tokens">to_string_with_tokens</a></li><li data-type='method'><a href="Othello.html#.winner">winner</a></li></ul></li><li><a href="Othello.test.html">test</a><ul class='methods'><li data-type='method'><a href="Othello.test.html#.throw_if_invalid">throw_if_invalid</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Othello.html">Othello</a><ul class='methods'><li data-type='method'><a href="Othello.html#.adjacent_support">adjacent_support</a></li><li data-type='method'><a href="Othello.html#.check_line">check_line</a></li><li data-type='method'><a href="Othello.html#.empty_board">empty_board</a></li><li data-type='method'><a href="Othello.html#.find_valid_moves">find_valid_moves</a></li><li data-type='method'><a href="Othello.html#.game_over">game_over</a></li><li data-type='method'><a href="Othello.html#.is_cell_empty">is_cell_empty</a></li><li data-type='method'><a href="Othello.html#.legal_moves_available">legal_moves_available</a></li><li data-type='method'><a href="Othello.html#.other_player">other_player</a></li><li data-type='method'><a href="Othello.html#.place_token">place_token</a></li><li data-type='method'><a href="Othello.html#.random_legal_move">random_legal_move</a></li><li data-type='method'><a href="Othello.html#.score">score</a></li><li data-type='method'><a href="Othello.html#.setup_board">setup_board</a></li><li data-type='method'><a href="Othello.html#.to_string">to_string</a></li><li data-type='method'><a href="Othello.html#.to_string_with_tokens">to_string_with_tokens</a></li><li data-type='method'><a href="Othello.html#.winner">winner</a></li></ul></li><li><a href="Othello.test.html">test</a></li></ul>
 </nav>
 
 <div id="main">
@@ -136,166 +136,6 @@
     
 
     
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id=".throw_if_invalid"><span class="type-signature">(static) </span>throw_if_invalid<span class="signature">(board)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tests_Othello.test.js.html">tests/Othello.test.js</a>, <a href="tests_Othello.test.js.html#line42">line 42</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    <p>Returns if the board is in a valid state
-A board is valid if all the following are true:</p>
-<ul>
-<li>the board is a 2d array</li>
-<li>there are 64 elemnts in the board</li>
-<li>there are 8 columns and 8 rows</li>
-<li>all elements' values are either a 0, 1 or 2</li>
-<li><em>this test has been adapted from Freddie Page's example code</em></li>
-</ul>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>board</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">board</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The board to test</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Throws:</h5>
-
-        
-
-    <div class="param-desc usertext">
-    
-        <p>if the board fails any of the above conditions</p>
-    
-    </div>
-
-
-    
-
-
-
-
-
-        
-    
 
     
 
@@ -314,7 +154,7 @@ A board is valid if all the following are true:</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Mon Jul 11 2022 23:28:12 GMT+0800 (Singapore Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Tue Jul 12 2022 22:36:43 GMT+0800 (Singapore Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

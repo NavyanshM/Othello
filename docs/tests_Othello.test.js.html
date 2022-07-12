@@ -27,7 +27,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Othello.html">Othello</a><ul class='methods'><li data-type='method'><a href="Othello.html#.adjacent_support">adjacent_support</a></li><li data-type='method'><a href="Othello.html#.check_line">check_line</a></li><li data-type='method'><a href="Othello.html#.empty_board">empty_board</a></li><li data-type='method'><a href="Othello.html#.find_valid_moves">find_valid_moves</a></li><li data-type='method'><a href="Othello.html#.game_over">game_over</a></li><li data-type='method'><a href="Othello.html#.is_cell_empty">is_cell_empty</a></li><li data-type='method'><a href="Othello.html#.legal_moves_available">legal_moves_available</a></li><li data-type='method'><a href="Othello.html#.other_player">other_player</a></li><li data-type='method'><a href="Othello.html#.place_token">place_token</a></li><li data-type='method'><a href="Othello.html#.random_legal_move">random_legal_move</a></li><li data-type='method'><a href="Othello.html#.score">score</a></li><li data-type='method'><a href="Othello.html#.setup_board">setup_board</a></li><li data-type='method'><a href="Othello.html#.to_string">to_string</a></li><li data-type='method'><a href="Othello.html#.to_string_with_tokens">to_string_with_tokens</a></li><li data-type='method'><a href="Othello.html#.winner">winner</a></li></ul></li><li><a href="Othello.test.html">test</a><ul class='methods'><li data-type='method'><a href="Othello.test.html#.throw_if_invalid">throw_if_invalid</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Othello.html">Othello</a><ul class='methods'><li data-type='method'><a href="Othello.html#.adjacent_support">adjacent_support</a></li><li data-type='method'><a href="Othello.html#.check_line">check_line</a></li><li data-type='method'><a href="Othello.html#.empty_board">empty_board</a></li><li data-type='method'><a href="Othello.html#.find_valid_moves">find_valid_moves</a></li><li data-type='method'><a href="Othello.html#.game_over">game_over</a></li><li data-type='method'><a href="Othello.html#.is_cell_empty">is_cell_empty</a></li><li data-type='method'><a href="Othello.html#.legal_moves_available">legal_moves_available</a></li><li data-type='method'><a href="Othello.html#.other_player">other_player</a></li><li data-type='method'><a href="Othello.html#.place_token">place_token</a></li><li data-type='method'><a href="Othello.html#.random_legal_move">random_legal_move</a></li><li data-type='method'><a href="Othello.html#.score">score</a></li><li data-type='method'><a href="Othello.html#.setup_board">setup_board</a></li><li data-type='method'><a href="Othello.html#.to_string">to_string</a></li><li data-type='method'><a href="Othello.html#.to_string_with_tokens">to_string_with_tokens</a></li><li data-type='method'><a href="Othello.html#.winner">winner</a></li></ul></li><li><a href="Othello.test.html">test</a></li></ul>
 </nav>
 
 <div id="main">
@@ -50,7 +50,6 @@
 */
 
 import e from "express";
-import { F, or } from "rambda";
 import Othello from "../common/Othello.js";
 import R from "../common/ramda.js";
 
@@ -83,54 +82,50 @@ const display_board = function (board) {
 * @param {board} board The board to test
 * @throws if the board fails any of the above conditions
 */
-const throw_if_invalid = function (board) {
-    "use strict";
-    if (!Array.isArray(board) || !Array.isArray(board[0])) {
-        throw new Error(
-            "The board is not a 2D array: " + display_board(board)
-        );
-    }
-    const height = board[0].length;
-    if (height !== 8){
-        throw new Error(
-            "The height of the board is not 8: " + display_board(board)
-        );
-    }
-    const rectangular = R.all(
-        (column) => column.length === height,
-        board
-    );
-    const num_elements = height * R.transpose(board)[0].length;
-    if (num_elements !== 64){
-        throw new Error(
-            "There are not 64 elements in the board : " + display_board(board)
-
-        );
-    }
-    if (!rectangular) {
-        throw new Error(
-            "The board is not rectangular: " + display_board(board)
-        );
-    }
-
-    const valid_tokens = [0, 1, 2];
-    const contains_valid_tokens = R.pipe(
-        R.flatten,
-        R.all((slot) => valid_tokens.includes(slot))
-    )(board);
-    if (!contains_valid_tokens) {
-        throw new Error(
-            "The board contains invalid tokens: " + display_board(board)
-        );
-    }
-};
 
 describe("Empty Board", function () {
     it("An empty board is a valid board", function () {
-        const empty_board = Othello.empty_board(8,8);
-        throw_if_invalid(empty_board);
+        const board = Othello.empty_board(8,8);
+        if (!Array.isArray(board) || !Array.isArray(board[0])) {
+            throw new Error(
+                "The board is not a 2D array: " + display_board(board)
+            );
+        }
+        const height = board[0].length;
+        if (height !== 8){
+            throw new Error(
+                "The height of the board is not 8: " + display_board(board)
+            );
+        }
+        const rectangular = R.all(
+            (column) => column.length === height,
+            board
+        );
+        const num_elements = height * R.transpose(board)[0].length;
+        if (num_elements !== 64){
+            throw new Error(
+                "There are not 64 elements in the board : " + display_board(board)
+    
+            );
+        }
+        if (!rectangular) {
+            throw new Error(
+                "The board is not rectangular: " + display_board(board)
+            );
+        }
+    
+        const valid_tokens = [0, 1, 2];
+        const contains_valid_tokens = R.pipe(
+            R.flatten,
+            R.all((slot) => valid_tokens.includes(slot))
+        )(board);
+        if (!contains_valid_tokens) {
+            throw new Error(
+                "The board contains invalid tokens: " + display_board(board)
+            );
+        }
+        
     });
-
     it("An empty board has all free elements", function () {
         const empty_board = Othello.empty_board(8,8);
         const all_free_slots = R.pipe(
@@ -157,20 +152,6 @@ describe("Empty Board", function () {
         }
     });
 });
-
-/**
-* Returns if the board is in a valid state
-* A board is valid if all the following are true:
-* - the board is a 2d array
-* - there are 64 elemnts in the board
-* - there are 8 columns and 8 rows
-* - all elements' values are either a 0, 1 or 2
-* - *this test has been adapted from Freddie Page's example code*
-* @memberof Othello.test
-* @function
-* @param {board} board The board to test
-* @throws if the board fails any of the above conditions
-*/
 
 /**
 * Returns if the board after setup follows the game rules and is as expected
@@ -362,7 +343,7 @@ describe("Game ended", function () {
         }
     })
 
-    it("Conditions satisfid but the game is not over", function () {
+    it("Conditions satisfied but the game is not over", function () {
         no_legal_move_counter = 2;
         board = Othello.empty_board(8,8);
         for (let i = 0; i &lt; 8; i++){
@@ -485,6 +466,52 @@ describe("Winner", function () {
             )
         }
     })
+    
+    it("Black won", function () {
+        for (let i = 0; i &lt; 5; i++){
+            for (let j = 0; j &lt; 8; j++){
+                board = Othello.place_token(1, i , j, board)
+            }
+        }
+        for (let i = 5; i &lt; 8; i++){
+            for (let j = 0; j &lt; 8; j++){
+                board = Othello.place_token(2, i , j, board)
+            }
+        }
+        if (
+            Othello.winner(board) !== "Black"
+        ) {
+            throw new Error(
+                "Black has more tokens but black has not won " +
+                board + 
+                " Othello.winner(): " +
+                Othello.winner(board)
+            )
+        }
+    })
+    
+    it("White won", function () {
+        for (let i = 0; i &lt; 3; i++){
+            for (let j = 0; j &lt; 8; j++){
+                board = Othello.place_token(1, i , j, board)
+            }
+        }
+        for (let i = 3; i &lt; 8; i++){
+            for (let j = 0; j &lt; 8; j++){
+                board = Othello.place_token(2, i , j, board)
+            }
+        }
+        if (
+            Othello.winner(board) !== "White"
+        ) {
+            throw new Error(
+                "White has more tokens but white has not won " +
+                board + 
+                " Othello.winner(): " +
+                Othello.winner(board)
+            )
+        }
+    })
 });</code></pre>
         </article>
     </section>
@@ -499,7 +526,7 @@ describe("Winner", function () {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Mon Jul 11 2022 23:28:12 GMT+0800 (Singapore Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Tue Jul 12 2022 22:36:43 GMT+0800 (Singapore Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
